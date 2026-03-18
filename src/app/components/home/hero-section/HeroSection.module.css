@@ -1,0 +1,451 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+
+@font-face {
+    font-family: 'CyberFont'; 
+    src: url("/fonts/Yeager-Regular.otf") format('opentype');
+    font-style: normal;
+    font-display: swap; /* Helps prevent invisible text while loading */
+}
+
+.card-container {
+    position: relative;
+    width: 90vw; 
+	max-width: 1425px;
+    height: auto; 
+    aspect-ratio: 1920 / 1080;
+	padding: 40px;
+    container-type: size; 
+    margin: 0 auto;
+    perspective: 1000px;
+    z-index: 10;
+}
+
+.card {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transform-style: preserve-3d;
+	transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	cursor: pointer;
+}
+
+.card-container:hover .card {
+	transform: rotateY(10deg) rotateX(5deg);
+}
+
+.card-face {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+	border-radius: 0.8cqi;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0 0 30px rgba(0, 195, 255, 0.5);
+}
+
+.social-links-floating {
+    position: absolute;
+    /* Position it on the left side */
+    left: 4cqi; 
+    /* Position it vertically underneath the image area */
+    /* Adjust 'top' based on where your profile-wrapper ends */
+    top: calc(70% + 5px);
+    
+    /* Layering */
+    z-index: 15; /* Higher than inner-layout and effects */
+    
+    /* Layout for the icons inside */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5cqi;
+    
+    /* Optional: Ensure it doesn't move with flex logic */
+    pointer-events: auto;
+    transform: translateZ(50px);
+    will-change: transform;
+}
+
+.card-front {
+    background: url(../../../../../public/images/hero-sec/vhs_background_asset.png);
+    background-size: 100% 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.card-front::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 2;
+	background-size: 100px 100px;
+	background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgTCAwIDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC44Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+");
+	opacity: 0.4; 
+    z-index: 2;
+    pointer-events: none;
+}
+
+.card-header {
+	width: 100%;
+	position: relative;
+	z-index: 2;
+}
+
+.card-title {
+	font-family: 'CyberFont', sans-serif;
+	font-size: 9cqi;
+	font-weight: 700;
+	text-transform: uppercase;
+	color: var(--secondary);
+	margin-bottom: 0.2cqi;
+	text-shadow: 0 0 10px rgba(0, 195, 255, 0.7);
+	letter-spacing: 1px;
+}
+
+.card-subtitle {
+	font-family: "Share Tech Mono", monospace;
+	font-size: 2.3cqi;
+	color: var(--secondary);
+	margin-bottom: 2cqi;
+	text-transform: uppercase;
+	letter-spacing: 0.4cqi;
+}
+
+.card-content {
+	width: 100%;
+	position: relative;
+	z-index: 2;
+}
+
+.card-text {
+	font-family: "Rajdhani", sans-serif;
+	font-size: 1.8cqi;
+	color: var(--secondary);
+	line-height: 1.5;
+	letter-spacing: 0.15cqi;
+	margin-bottom: 2cqi;
+}
+
+.card-stats {
+    display: flex;
+    flex-direction: column; /* Stacks items vertically */
+    gap: 2cqi;              /* Creates even spacing between the rows */
+    margin-bottom: 0.5cqi;
+    align-items: flex-start; /* Ensures they align to the left edge */
+}
+
+.stat {
+    display: flex;         /* Makes the value and label sit side-by-side */
+    align-items: baseline; /* Aligns the bottom of the text strings */
+    gap: 1cqi;             /* Space between the "87%" and the "Sync" */
+    text-align: left;      /* Just in case */
+}
+
+.stat-value {
+	font-family: "Share Tech Mono", monospace;
+	font-size: 2cqi;
+	color: var(--secondary);
+	text-shadow: 0 0 10px rgba(0, 195, 255, 0.7);
+}
+
+.card-email {
+	font-family: "Rajdhani", sans-serif;
+	padding-top: 0.2cqi;
+	font-weight: 520;
+	font-size: 1.7cqi;
+	text-align: center;
+	color: var(--secondary);
+	margin-bottom: 2cqi;
+	letter-spacing: 0.4cqi;
+}
+
+
+.card-footer {
+	flex: 0 0 20%;
+	padding: 2cqi 4cqi;
+	position: relative;
+	z-index: 2;
+	margin-top: auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.card-id {
+	font-family: "Share Tech Mono", monospace;
+	font-size: 14px;
+	color: #00c3ff;
+	text-shadow: 0 0 5px rgba(0, 195, 255, 0.7);
+}
+
+.card-inner-layout {
+    display: flex; /* Makes the children sit side-by-side */
+    width: 100%;
+	height: 100%;
+    position: relative; /* Ensures it sits on top of the grid lines */
+    z-index: 5;
+	overflow: hidden;
+}
+
+.card-left {
+	position: relative;
+    flex: 1; /* Takes up 40% or a set portion */
+	padding: 3.5cqi;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.line-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Keeps them anchored to the top */
+    gap: 2cqi;
+    pointer-events: none;
+    z-index: 0;
+	transform: translateX(-0.2cqi); /* Shifts slightly to the left */
+}
+
+.accent-line {
+    /* Use the variable passed from React! */
+    width: var(--line-width, 1.5cqi); 
+	flex-shrink: 0;
+    height: 80%;
+    background: linear-gradient(
+        to bottom,
+        var(--secondary) 0%,
+        var(--secondary)90%,
+        transparent 100%
+    );
+}
+
+.card-right {
+	height: 100%;
+    flex: 2; /* Takes up the remaining 60% */
+    padding: 3.5cqi;
+    display: flex;
+    flex-direction: column;
+	align-items: center;
+    justify-content: flex-start;
+}
+
+.vector-container {
+	position: absolute;
+    top: 37cqi;   
+    right: 5cqi;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.arrows-vector {
+    width: 18cqi; 
+    aspect-ratio: 1 / 1; 
+    display: inline-block;
+    background-color: var(--secondary); 
+    
+    transform: scaleX(-1);
+    
+    mask: url("/images/hero-sec/arrows.svg") no-repeat center / contain;
+    -webkit-mask: url("/images/hero-sec/arrows.svg") no-repeat center / contain;
+}
+
+.profile-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+.profile-frame {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--secondary);
+    padding: 0.7cqi;
+    clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+    z-index: 2; /* Sits on top */
+}
+
+.ghost-frame {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translate(3.4cqi, 3.4cqi); 
+    
+    /* 1. Remove background and padding so it's truly "empty" */
+    background: var(--secondary); 
+    padding: 0.5cqi;
+
+    /* 3. The clip-path stays the same */
+    clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+    
+    z-index: 1;
+    pointer-events: none;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Prevents stretching */
+    display: block;
+    background: var(--secondary); /* Backup color while image loads */
+    
+    /* Match the frame's cut corners */
+    clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+}
+
+.glow-effect {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: 2px;
+	box-shadow: inset 0 0 20px rgba(0, 195, 255, 0.3);
+	pointer-events: none;
+	z-index: 3;
+}
+
+.edge-highlight {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 20px;
+	box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.5);
+	pointer-events: none;
+	z-index: 4;
+}
+
+.scanline {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
+	opacity: 0.3;
+	z-index: 5;
+	pointer-events: none;
+}
+
+.scanline::before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 2px;
+	background: rgba(0, 195, 255, 0.5);
+	animation: scanline 4s linear infinite;
+}
+
+@keyframes scanline {
+	0% {
+		top: 0%;
+	}
+
+	100% {
+		top: 100%;
+	}
+}
+
+.glitch {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	animation: glitch 10s infinite;
+	pointer-events: none;
+	z-index: 6;
+}
+
+.hologram-effect {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		135deg,
+		rgba(255, 0, 85, 0.1) 0%,
+		rgba(0, 195, 255, 0.1) 100%
+	);
+	border-radius: 20px;
+	opacity: 0.5;
+	z-index: 7;
+	pointer-events: none;
+}
+
+.loading {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--secondary);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+	transition: opacity 1s ease-out;
+}
+
+.loading-text {
+	font-family: "Share Tech Mono", monospace;
+	font-size: 18px;
+	color: var(--ring);
+	margin-top: 20px;
+	letter-spacing: 2px;
+}
+
+.loading-bar {
+	width: 200px;
+	height: 4px;
+	background: #1c1c2d;
+	margin-top: 10px;
+	position: relative;
+	overflow: hidden;
+}
+
+.loading-bar::before {
+	content: "";
+	position: absolute;
+	width: 40px;
+	height: 100%;
+	background: linear-gradient(
+		90deg,
+		rgba(0, 195, 255, 0) 0%,
+		#00c3ff 50%,
+		rgba(0, 195, 255, 0) 100%
+	);
+	animation: loading 1.5s infinite linear;
+}
+
+@keyframes loading {
+	0% {
+		transform: translateX(-40px);
+	}
+
+	100% {
+		transform: translateX(200px);
+	}
+}

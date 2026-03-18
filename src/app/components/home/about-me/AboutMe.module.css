@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+
+/* not making this module.css didn't loudly break, but i stopped being able to see live refreshes */
+
+.aboutSection {
+    width: 100%;
+    padding: 0.1vw 0;
+    display: flex;
+    justify-content: center;
+}
+
+.aboutContainer {
+    position: relative;
+    margin: 0 auto;
+    width: 85vw;
+    max-width: 1425px;
+    background: var(--background);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    
+    clip-path: polygon(
+        0 0, 
+        calc(100% - 40px) 0, 
+        100% 40px, 
+        100% 100%, 
+        40px 100%, 
+        0 calc(100% - 40px)
+    );
+}
+
+
+.aboutContainer::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: center;
+    width: 400px; 
+    height: 200vw; 
+    margin-top: -100vw;
+    margin-left: -200px;
+    background: linear-gradient(rgba(84, 145, 220, 0.2), rgba(0, 225, 255, 0.2));
+    filter: blur(10px);
+    animation: rotate 4s linear infinite;
+    /* Box shadows get clipped by clip-paths */
+}
+
+/* Hides center of the laser */
+.aboutContainer::after {
+    content: '';
+    position: absolute;
+    inset: 8px; /* Thickness of the laser border */
+    background: var(--background);
+    
+    clip-path: polygon(
+        0 0, 
+        calc(100% - 38px) 0, 
+        100% 38px, 
+        100% 100%, 
+        38px 100%, 
+        0 calc(100% - 38px)
+    );
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.aboutContent {
+    position: relative;
+    z-index: 10;
+    padding: 3rem 2rem; 
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.aboutLabel {
+    font-family: 'CyberFont', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #00ccff; 
+    margin: 0;
+}
+
+.aboutDescription {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--primary);
+    margin: 0;
+}
+
+.highlight {
+    background: linear-gradient(90deg, rgba(77, 204, 243, 0.4) 0%, rgba(243,202,77,0.05) 100%);
+    padding: 0 0.25rem;
+    border-radius: 2px;
+    color: var(--primary);
+}
+
+@media (min-width: 768px) {
+    .aboutDescription {
+        font-size: 1.25rem; 
+    }
+}

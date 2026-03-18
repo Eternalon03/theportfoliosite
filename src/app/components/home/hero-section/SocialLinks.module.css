@@ -1,0 +1,114 @@
+.wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    width: 32cqi;
+    height: 7cqi;
+    padding: 0.3cqi;
+    /* Use PX for the border to prevent scaling sub-pixel gaps */
+    border: 0.7cqi solid var(--secondary); 
+    box-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.3), /* Outer glow */
+        inset 0 0 15px rgba(255, 255, 255, 0.2); /* Inner "Glass" depth */
+    transform: translateZ(0);
+    will-change: transform;
+    z-index: 50;
+    /* Remove background and backdrop-filter from here */
+}
+
+/* Add the blur and background on a separate pseudo-layer */
+.wrapper::before {
+    content: "";
+    position: absolute;
+    top: -1px; 
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    
+    transform: translateZ(1px);
+    background: rgba(37, 137, 219, 0.4);
+    
+    /* 1. Add saturation to make the background colors pop through the blur */
+    /* 2. Stack the blur value */
+    backdrop-filter: blur(50px) saturate(180%);
+    -webkit-backdrop-filter: blur(50px) saturate(180%);
+    
+    z-index: 0;
+    /* Optional: ensures the blur doesn't "bleed" outside the border radius */
+    overflow: hidden; 
+}
+
+.holder {
+    position: relative;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 6.2cqi; 
+    width: 6.2cqi;
+    padding: 0.7cqi;
+    border-radius: 50%;
+    font-size: 4cqi;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    color: var(--secondary);
+    transform: translateZ(0);
+    background: transparent;
+}
+
+.tooltip {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: "Rajdhani", sans-serif;
+    letter-spacing: 0.2cqi;
+    position: absolute;
+    padding: 0.5cqi 2cqi;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -7cqi);
+    font-size: 2cqi; /* Adjusted slightly for the new font */
+    border-radius: 4px; /* Squarer corners look more "tech" than 30px pill shapes */
+    color: var(--secondary);
+    background: rgba(0, 0, 0, 0.9); /* Darker for better contrast against blur */
+    z-index: 1;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    opacity: 0;
+    pointer-events: none;
+    
+    /* Glitch-fix from earlier */
+    backface-visibility: hidden;
+}
+
+.tooltip::before {
+    content: "";
+    position: absolute;
+    width: 2cqi;
+    height: 2cqi;
+    bottom: -1cqi;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    background: rgba(0, 0, 0, 0.8);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.icon:hover ~ .tooltip {
+    transform: translate(-50%, -5cqi);
+    opacity: 1;
+}
+
+.icon:hover {
+    color: var(--secondary);
+}
+
+.boldText {
+    font-weight: 501 !important; /* Forces the heavier weight */
+    letter-spacing: 0.2cqi;
+}
+
+/* Hover States using CSS Variables or specific classes */
+.linkedin .icon:hover, .linkedin .icon:hover ~ .tooltip, .linkedin .icon:hover ~ .tooltip::before { background: #0a66c2; }
+.itchio .icon:hover, .itchio .icon:hover ~ .tooltip, .itchio .icon:hover ~ .tooltip::before { background: #fe294e; }
+.github .icon:hover, .github .icon:hover ~ .tooltip, .github .icon:hover ~ .tooltip::before { background: #333; }
