@@ -1,6 +1,3 @@
-/* =========================================
-   1. IMPORTS & FONTS
-========================================= */
 @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
 
@@ -11,13 +8,10 @@
     font-display: swap;
 }
 
-/* =========================================
-   2. GLOBAL RESETS & BASE STYLES
-========================================= */
 *, *::before, *::after {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* border-box ensures padding and border are included in the element's total width and height */
     border-color: var(--border);
 }
 
@@ -35,8 +29,63 @@ body {
     overflow-x: hidden;
 }
 
+/* backdrop of whole app, contains three.js background */
+#canvas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -10;
+    background: var(--secondary);
+}
+
 /* =========================================
-   3. TYPOGRAPHY (Translated from Tailwind)
+  LAYOUT COMPONENTS
+========================================= */
+.container {
+    width: 100%;
+    max-width: 70.9rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0.5rem;  /* px-5 */
+    padding-right: 0.5rem; /* px-5 */
+}
+
+.section {
+    width: 100%;
+    padding: 0.1vw 0;
+    display: flex;
+    justify-content: center;
+}
+
+/* =========================================
+  CONSTANTS
+========================================= */
+:root {
+    --radius: 0.625rem;
+    --background: #fffdf6;
+    --foreground: oklch(0.145 0 0);
+    --primary: #1C212B;
+    --secondary: rgb(245, 241, 226);
+    --tertiary: #5491dc;
+    --accent: #00e1ff;
+    --error: oklch(0.577 0.245 27.325);
+    --main-blue: rgb(57, 148, 223);
+    --text-blue: rgb(19, 127, 216);
+
+    --glitched-duration: 0.9s;
+    --glitched-long-duration: 3s;
+}
+
+.dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+}
+
+/* =========================================
+   GLOBAL TYPOGRAPHY
 ========================================= */
 h1, h2, h3, h4, h5, h6 {
     color: var(--primary);
@@ -46,10 +95,8 @@ h1 {
     font-size: 1.5rem; /* Equivalent to text-2xl */
     font-weight: 400;
 }
-@media (min-width: 768px) { h1 { font-size: 1.875rem; } } /* md:text-3xl */
-@media (min-width: 1024px) { h1 { font-size: 32px; } }    /* lg:text-[32px] */
 
-h2 { font-size: 1.875rem; font-weight: 400; } /* text-3xl */
+h2 { font-size: calc(0.5vw + 1.4rem); font-weight: 400; } /* text-3xl */
 h3 { font-size: 1.5rem; font-weight: 400; }    /* text-2xl */
 
 h4 { font-size: 1.125rem; font-weight: 500; } /* text-lg */
@@ -64,283 +111,4 @@ p {
     font-size: 1rem;
     font-weight: 400;
     color: var(--secondary);
-}
-
-/* =========================================
-   4. LAYOUT COMPONENTS
-========================================= */
-.container {
-    width: 100%;
-    max-width: 70.9rem;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 0.5rem;  /* px-5 */
-    padding-right: 0.5rem; /* px-5 */
-}
-
-@media (min-width: 640px) {
-    .container {
-        padding-left: 1.75rem;  /* sm:px-7 */
-        padding-right: 1.75rem; /* sm:px-7 */
-    }
-}
-
-#canvas-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -10;
-    background: linear-gradient(180deg, var(--secondary) 0%, var(--secondary)  100%);
-}
-
-/* =========================================
-   5. DESIGN TOKENS (CSS Variables)
-========================================= */
-:root {
-    --radius: 0.625rem;
-    --background: #fffdf6;
-    --foreground: oklch(0.145 0 0);
-    --primary: #1C212B;
-    --secondary: #f5f1e2;
-    --tertiary: #5491dc;
-    --accent: #00e1ff;
-    --destructive: oklch(0.577 0.245 27.325);
-    --main-blue: #3994df;
-
-    --glitched-duration: 0.9s;
-    --glitched-long-duration: 3s;
-}
-
-.dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-}
-
-/* Titles */
-h1.digital,
-h2.digital,
-h3.digital,
-h4.digital {
-  font-family: 'CyberFont', "Share Tech Mono", monospace;
-  font-size: 2rem;
-  line-height: 2.2rem;
-  font-weight: 200;
-  position: relative;
-  padding-bottom: 15px;
-  color: var(--main-blue);
-}
-
-h2.digital { font-size: 1.7rem; line-height: 1.9rem; font-weight: 300; }
-h3.digital { font-size: 1.4rem; line-height: 1.6rem; font-weight: 500; }
-h4.digital { font-size: 1rem; line-height: 1.2rem; font-weight: 700; }
-
-h1.digital:before,
-h2.digital:before,
-h3.digital:before,
-h4.digital:before {
-    content: "";
-    display: block;
-    position: absolute;
-    bottom: 0px;
-    left: 2px;
-    width: 100%;
-    height: 10px;
-    background-color: var(--main-blue);
-    clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 0px 10px);
-}
-
-/* Glitch Animations */
-h1.digital.glitched {
-  animation: h1glitched calc(var(--glitched-duration) * 1.4) linear infinite;
-}
-
-h2.digital.glitched {
-  animation: h1glitched calc(var(--glitched-duration) * 1.7) linear infinite reverse;
-}
-
-h3.digital.glitched {
-  animation: h1glitched calc(var(--glitched-duration) * 1.1) ease-out infinite reverse;
-}
-
-h4.digital.glitched {
-  animation: h1glitched calc(var(--glitched-duration) * 2.1) ease-in-out infinite;
-}
-
-@keyframes h1glitched {
-  0%, 10% { transform: skew(-20deg); left: -4px; }
-  11% { transform: skew(0deg); left: 2px; }
-  50%, 60%, 100% { transform: skew(0deg); }
-  51%, 59% { transform: skew(10deg); }
-}
-
-h1.digital.glitched:before {
-  animation: h1beforeglitched calc(var(--glitched-duration) * 2) linear infinite;
-}
-
-@keyframes h1beforeglitched {
-  0%, 10% {
-    transform: skew(-20deg); left: -4px;
-    clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 0px 10px);
-  }
-  11%, 50%, 60%, 100% {
-    transform: skew(0deg); left: 2px;
-    clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 0px 10px);
-  }
-  51%, 59% {
-    transform: skew(0deg);
-    clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 40% 5px, calc(40% - 30px) 0px, calc(40% + 30px) 0px, calc(45% - 15px) 5px, 100% 5px, 100% 6px, calc(45% - 14px) 6px, calc(40% + 29px) 1px, calc(40% - 29px) 1px, calc(40% + 1px) 6px, 85px 6px, 80px 10px, 0px 10px);
-  }
-}
-
-h2.digital:before {
-  clip-path: polygon(0px 5px, 35px 5px, 40px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 20px 10px, 15px 6px, 0px 6px);
-}
-
-h2.digital.glitched:before {
-  animation: h2beforeglitched calc(var(--glitched-duration) * 2) linear infinite;
-}
-
-@keyframes h2beforeglitched {
-  0%, 10%, 51%, 59%, 60%, 100% { transform: scaleY(1); }
-  11%, 50% { transform: scaleY(-1); }
-}
-
-h3.digital:before {
-  clip-path: polygon(0px 5px, 10px 5px, 15px 0px, 40px 0px, 45px 5px, 100% 5px, 100% 6px, 31px 6px, 27px 2px, 15px 2px, 8px 10px, 0px 10px);
-}
-
-h4.digital:before {
-  clip-path: polygon(0px 3px, 15px 3px, 20px 0px, 80px 0px, 85px 3px, 100% 3px, 100% 4px, 85px 4px, 80px 7px, 20px 7px, 15px 4px, 0px 4px);
-}
-
-/* The Blinking Cursor */
-h1.digital:after,
-h2.digital:after,
-h3.digital:after,
-h4.digital:after,
-p.digital:after {
-  content: "_";
-  animation: hxafter var(--glitched-duration) linear infinite;
-}
-
-h3.digital:after,
-h4.digital:after {
-  animation-direction: reverse;
-  animation-duration: calc(var(--glitched-duration) / 2);
-}
-
-@keyframes hxafter {
-  0%, 50% { opacity: 0; }
-  51%, 100% { opacity: 1; }
-}
-
-/* Separator - Changed to a class so it doesn't break normal HRs */
-hr.digital {
-  height: 14px;
-  background-color: var(--primary);
-  width: 100%;
-  border: none;
-  clip-path: polygon(1px 0px, 0px 0px, 0px 0px, 8px 14px, 13px 14px, 22px 7px, 42px 6px, 49px 2px, 100% 2px, 100% 0px, 42px 0px, 35px 5px, 22px 6px, 13px 13px, 9px 13px);
-  animation: hr var(--glitched-long-duration) linear infinite; 
-}
-
-@keyframes hr {
-  0%, 15%, 21%, 100% { transform: skew(0deg); }
-  16%, 20% { transform: skew(20deg); }
-}
-
-
-
-.main-button {
-    background: linear-gradient(0deg, var(--tertiary) 0%, var(--tertiary) 100%);
-    width: 130px;
-    height: 40px;
-    border-radius: 5px;
-    padding: 10px 25px;
-    font-family: 'CyberFont', "Share Tech Mono", monospace;
-    color: var(--secondary);
-    font-size: 1rem;
-    line-height: 2.2rem;
-    font-weight: 200;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    display: inline-block;
-    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
-    7px 7px 20px 0px rgba(0,0,0,.1),
-    4px 4px 5px 0px rgba(0,0,0,.1);
-    outline: none;
-    line-height: 42px;
-    padding: 0;
-    border: none;
-    text-align: center;
-}
-.main-button span {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-.main-button:before,
-.main-button:after {
-  position: absolute;
-  content: "";
-  right: 0;
-  bottom: 0;
-  background: var(--tertiary);
-  box-shadow:
-   -7px -7px 20px 0px rgba(255,255,255,.9),
-   -4px -4px 5px 0px rgba(255,255,255,.9),
-   7px 7px 20px 0px rgba(0,0,0,.2),
-   4px 4px 5px 0px rgba(0,0,0,.3);
-  transition: all 0.3s ease;
-}
-.main-button:before{
-   height: 0%;
-   width: 2px;
-}
-.main-button:after {
-  width: 0%;
-  height: 2px;
-}
-.main-button:hover{
-  color: var(--primary);
-  background: transparent;
-}
-.main-button:hover:before {
-  height: 100%;
-}
-.main-button:hover:after {
-  width: 100%;
-}
-.main-button span:before,
-.main-button span:after {
-  position: absolute;
-  content: "";
-  left: 0;
-  top: 0;
-  background: var(--accent);
-  box-shadow:
-   -7px -7px 20px 0px rgba(255,255,255,.9),
-   -4px -4px 5px 0px rgba(255,255,255,.9),
-   7px 7px 20px 0px rgba(0,0,0,.2),
-   4px 4px 5px 0px rgba(0,0,0,.3);
-  transition: all 0.3s ease;
-}
-.main-button span:before {
-  width: 2px;
-  height: 0%;
-}
-.main-button span:after {
-  height: 2px;
-  width: 0%;
-}
-.main-button span:hover:before {
-  height: 100%;
-}
-.main-button span:hover:after {
-  width: 100%;
 }

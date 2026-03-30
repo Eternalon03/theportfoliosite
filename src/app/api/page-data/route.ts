@@ -1,67 +1,100 @@
 import { NextResponse } from "next/server";
 
+const skillsData = {
+    game: [
+        { name: "C++", type: "language" },
+        { name: "C#", type: "language" },
+        { name: "GDScript", type: "language" },
+        { name: "Python", type: "language" },
+        { name: "Ruby", type: "language" },
+        { name: "Unreal Engine", type: "engine" },
+        { name: "Unity", type: "engine" },
+        { name: "Godot", type: "engine" },
+        { name: "Houdini", type: "tool" },
+        { name: "Blender", type: "tool" },
+        { name: "Jenkins", type: "CI/CD" },
+        { name: "Perforce", type: "version control" },
+        { name: "Git", type: "version control" },
+    ],
+    mobile: [
+        { name: "Kotlin", type: "language" },
+        { name: "Swift", type: "language" },
+        { name: "Java", type: "language" },
+        { name: "SQL", type: "language" },
+        { name: "Python", type: "language" },
+        { name: "Ruby", type: "language" },
+        { name: "SwiftUI", type: "frameworks" },
+        { name: "UIKit", type: "frameworks" },
+        { name: "Jetpack Compose", type: "frameworks" },
+        { name: "Jenkins", type: "CI/CD" },
+        { name: "Fastlane", type: "CI/CD" },
+        { name: "Optimizely", type: "CI/CD" },
+        { name: "Splunk", type: "monitoring" },
+        { name: "NewRelic", type: "monitoring" },
+        { name: "Amazon EC2", type: "cloud" },
+    ],
+    web: [
+        { name: "TypeScript", type: "language" },
+        { name: "Javascript", type: "language" },
+        { name: "HTML/CSS", type: "language" },
+        { name: "Python", type: "language" },
+        { name: "Ruby", type: "language" },
+        { name: "React.js", type: "frameworks" },
+        { name: "Next.js", type: "frameworks" },
+        { name: "Node.js", type: "frameworks" },
+        { name: "Jenkins", type: "CI/CD" },
+        { name: "Optimizely", type: "CI/CD" },
+        { name: "Splunk", type: "monitoring" },
+        { name: "NewRelic", type: "monitoring" },
+        { name: "Amazon EC2", type: "cloud" },
+    ],
+    ml: [
+        { name: "Python", type: "language" },
+        { name: "SQL", type: "language" },
+        { name: "Pandas", type: "frameworks" },
+        { name: "NumPy", type: "frameworks" },
+        { name: "NLTK", type: "frameworks" },
+        { name: "Selenium", type: "frameworks" },
+    ]
+};
+
+
 const experienceData = [
     {
         icon: "/images/icon/tailwind-icon.svg",
-        role: "Product Designer, Tailwind",
-        location: "Remote",
-        startYear: "2022",
+        role: "Full Stack Mobile Engineer, Capital One",
+        location: "Toronto",
+        startYear: "2025",
         endYear: "Present",
         bulletPoints: [
-            "Led end-to-end redesign of dashboard UI, improving user retention by 23%",
-            "Collaborated with engineers and product managers to ship features faster",
-            "Designed components used in a system adopted by 4+ internal teams"
+            "Worked in Swift for iOS development",
+            "Worked in Kotlin for Android development",
         ]
-    },
-    {
-        icon: "/images/icon/asana-icon.svg",
-        role: "UI/UX Designer - Asana",
-        location: "New York, NY",
-        startYear: "2019",
-        endYear: "2022",
-        bulletPoints: [
-            "Created design systems for client projects across finance and healthcare",
-            "Conducted user testing and research to validate designs",
-            "Helped junior designers grow via mentorship"
-        ]
-    },
+    }
 ]
 
 const educationData = [
     {
-        date: "Sep 2015 - May 2019",
-        title: "B.F.A. in Graphic Design",
-        subtitle: "Pratt Institute — Brooklyn, NY"
-    },
-    {
-        date: "Mar 2021 - Aug 2021",
-        title: "UX Design Certificate",
-        subtitle: "Google UX Design - Coursera"
-    },
-    {
-        date: "Jan 2020 - Mar 2020",
-        title: "Front-End Web Development Bootcamp",
-        subtitle: "General Assembly — New York, NY"
+        date: "Sep 2020 - May 2025",
+        title: "Bachelor of Computer Science",
+        subtitle: "University of Waterloo"
     }
 ];
 
 
 const projectOverview = {
     caseStudies: [
-        { name: "Wellnest", url: "#" },
-        { name: "ScoutHire", url: "#" },
+        { name: "test", url: "#" },
     ],
     sideProjects: [
-        { name: "Formless", url: "#" },
-        { name: "Gridsnap", comingSoon: true },
-        { name: "OrbitPay Mobile App", comingSoon: true },
-        { name: "Siteflow Page Builder", comingSoon: true },
+        { name: "Turtle Game", url: "#" }
     ]
 };
 
 
 export const GET = async () => {
     return NextResponse.json({
+        skillsData,
         experienceData,
         educationData,
         projectOverview
