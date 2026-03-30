@@ -3,13 +3,6 @@
 
 /* not making this module.css didn't loudly break, but i stopped being able to see live refreshes */
 
-.aboutSection {
-    width: 100%;
-    padding: 0.1vw 0;
-    display: flex;
-    justify-content: center;
-}
-
 .aboutContainer {
     position: relative;
     margin: 0 auto;
@@ -45,7 +38,6 @@
     background: linear-gradient(rgba(84, 145, 220, 0.2), rgba(0, 225, 255, 0.2));
     filter: blur(10px);
     animation: rotate 4s linear infinite;
-    /* Box shadows get clipped by clip-paths */
 }
 
 /* Hides center of the laser */
@@ -73,20 +65,10 @@
 .aboutContent {
     position: relative;
     z-index: 10;
-    padding: 3rem 2rem; 
+    padding: 2.5rem 2rem; 
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-}
-
-.aboutLabel {
-    font-family: 'CyberFont', sans-serif;
-    font-size: 1.5rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: #00ccff; 
-    margin: 0;
 }
 
 .aboutDescription {

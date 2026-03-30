@@ -1,0 +1,105 @@
+.baseHeader {
+    /* Use custom color if provided, otherwise default to --primary */
+    color: var(--custom-color, var(--primary));
+    font-family: 'CyberFont', "Share Tech Mono", monospace;
+    position: relative;
+    padding-bottom: 15px;
+    margin: 0;
+}
+
+/* --- Base Sizes (Overridable via --custom-size) --- */
+.h1 {
+    font-size: var(--custom-size, 2rem);
+    line-height: 1.1;
+    font-weight: 200;
+}
+.h2 {
+    font-size: var(--custom-size, calc(0.5vw + 1.4rem));
+    line-height: 1.1;
+    font-weight: 300;
+}
+.h3 {
+    font-size: var(--custom-size, 1.4rem);
+    line-height: 1.1;
+    font-weight: 500;
+}
+.h4 {
+    font-size: var(--custom-size, 1rem);
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+/* --- The Blueprint Underlines --- */
+.baseHeader::before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    left: 2px;
+    width: 100%;
+    height: 10px;
+    /* The underline matches the text color perfectly */
+    background-color: var(--custom-color, var(--primary)); 
+}
+
+.h1::before { clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 0px 10px); }
+.h2::before { clip-path: polygon(0px 5px, 35px 5px, 40px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 20px 10px, 15px 6px, 0px 6px); }
+.h3::before { clip-path: polygon(0px 5px, 10px 5px, 15px 0px, 40px 0px, 45px 5px, 100% 5px, 100% 6px, 31px 6px, 27px 2px, 15px 2px, 8px 10px, 0px 10px); }
+.h4::before { clip-path: polygon(0px 3px, 15px 3px, 20px 0px, 80px 0px, 85px 3px, 100% 3px, 100% 4px, 85px 4px, 80px 7px, 20px 7px, 15px 4px, 0px 4px); }
+
+/* --- Glitch Animations --- */
+.glitched.h1 { animation: h1glitched calc(var(--glitched-duration, 0.9s) * 1.4) linear infinite; }
+.glitched.h2 { animation: h1glitched calc(var(--glitched-duration, 0.9s) * 1.7) linear infinite reverse; }
+.glitched.h3 { animation: h1glitched calc(var(--glitched-duration, 0.9s) * 1.1) ease-out infinite reverse; }
+.glitched.h4 { animation: h1glitched calc(var(--glitched-duration, 0.9s) * 2.1) ease-in-out infinite; }
+
+@keyframes h1glitched {
+    0%, 10% { transform: skew(-20deg); left: -4px; }
+    11% { transform: skew(0deg); left: 2px; }
+    50%, 60%, 100% { transform: skew(0deg); }
+    51%, 59% { transform: skew(10deg); }
+}
+
+.glitched.h1::before { animation: h1beforeglitched calc(var(--glitched-duration, 0.9s) * 2) linear infinite; }
+@keyframes h1beforeglitched {
+    0%, 10% { transform: skew(-20deg); left: -4px; clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 0px 10px); }
+    11%, 50%, 60%, 100% { transform: skew(0deg); left: 2px; clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 0px 10px); }
+    51%, 59% { transform: skew(0deg); clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 40% 5px, calc(40% - 30px) 0px, calc(40% + 30px) 0px, calc(45% - 15px) 5px, 100% 5px, 100% 6px, calc(45% - 14px) 6px, calc(40% + 29px) 1px, calc(40% - 29px) 1px, calc(40% + 1px) 6px, 85px 6px, 80px 10px, 0px 10px); }
+}
+
+.glitched.h2::before { animation: h2beforeglitched calc(var(--glitched-duration, 0.9s) * 2) linear infinite; }
+@keyframes h2beforeglitched {
+    0%, 10%, 51%, 59%, 60%, 100% { transform: scaleY(1); }
+    11%, 50% { transform: scaleY(-1); }
+}
+
+/* --- Blinking Cursor --- */
+.baseHeader::after {
+    content: "_";
+    animation: hxafter var(--glitched-duration, 0.9s) linear infinite;
+}
+
+.h3::after, .h4::after {
+    animation-direction: reverse;
+    animation-duration: calc(var(--glitched-duration, 0.9s) / 2);
+}
+
+@keyframes hxafter {
+    0%, 50% { opacity: 0; }
+    51%, 100% { opacity: 1; }
+}
+
+/* --- Separator --- */
+.separator {
+    height: 14px;
+    background-color: var(--custom-color, var(--primary));
+    width: 100%;
+    border: none;
+    clip-path: polygon(1px 0px, 0px 0px, 0px 0px, 8px 14px, 13px 14px, 22px 7px, 42px 6px, 49px 2px, 100% 2px, 100% 0px, 42px 0px, 35px 5px, 22px 6px, 13px 13px, 9px 13px);
+    animation: hr var(--glitched-long-duration, 3s) linear infinite; 
+}
+
+@keyframes hr {
+    0%, 15%, 21%, 100% { transform: skew(0deg); }
+    16%, 20% { transform: skew(20deg); }
+}

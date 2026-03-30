@@ -1,6 +1,6 @@
 import Divider from "./components/divider"
 import AboutMe from "./components/home/about-me"
-import Education from "./components/home/education"
+import Education from "./components/home/skills"
 import Experience from "./components/home/experience"
 import HeroSection from "./components/home/hero-section"
 
@@ -11,9 +11,9 @@ const page = () => {
       <Divider/>
       <AboutMe/>
       <Divider/>
-      <Experience/>
-      <Divider/>
       <Education/>
+      <Divider/>
+      <Experience/>
       <Divider/>
     </main>
   )
