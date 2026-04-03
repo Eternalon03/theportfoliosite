@@ -1,22 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Share+Tech+Mono&display=swap");
 
 /* couldn't use generic section due to the tabs */
 .skillsSection {
-    margin: 2rem 0;
-}
-
-.titleContainer {
-    position: relative;
-    margin: 0 auto;
-    width: 85vw;
-    margin-bottom: 2rem;
-    padding-left: 30px;
-    padding-right: 30px;
-    max-width: 1425px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    overflow: hidden;
+    width: 100%;
+    padding: 2rem 0;
 }
 
 /* cutout only viewable when the screen is big enough */
@@ -41,40 +27,22 @@
 }
 
 .skillsContainer {
-        /* Colors */
-        --neon-cyan: rgb(0, 240, 255);
-        --border-color: rgb(20, 130, 207);
-        
-        /* Glassmorphism & Shadows */
-        --glass-bg: rgba(26, 140, 228, 0.2);
-        --glass-shadow: rgba(13, 126, 202, 0.9);
-        --card-inner-glow: rgba(0, 240, 255, 0.9);
-        --card-outer-border: rgba(20, 130, 207, 0.9);
-
-
-        /* --- LAYOUT SETTINGS --- */
-        position: relative;
-        margin: 0 auto;
-        width: 73.5vw;
-        min-height: 10em;
-        max-width: 1425px;
-        display: grid; 
-        grid-template-columns: 1fr;
-        flex-direction: column;
-        justify-content: center;
-        overflow: visible;
-        padding-bottom: 20px;
-}
-
-.skillsContent {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-    display: flex;
+    display: grid; 
+    grid-template-columns: 1fr;
     flex-direction: column;
-    padding: 1rem 1rem;
+    justify-content: center;
+    overflow: visible;
 }
+
+.tabHeaders {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: -0.2rem;   
+    position: relative;
+    z-index: 1;           
+}
+
 
 .hCardBorder {
     /* THE FIX: Forces this element into the first grid cell */
@@ -84,7 +52,7 @@
     position: relative;
     transform: translateZ(0);
     backface-visibility: hidden;
-    background: radial-gradient(circle, rgba(19, 127, 216, 0.4) 20%, var(--main-blue) 100%);
+    background: radial-gradient(circle, rgba(19, 127, 216, 0.4) 20%, var(--bright-blue) 100%);
     clip-path: var(--card-shape); 
     z-index: 1; 
 }
@@ -95,116 +63,47 @@
     */
     grid-area: 1 / 1; 
     position: relative;
-    margin: 5px; 
+    margin: 5px; /* deceptive, actually determines size of the border*/
     height: auto; 
     width: auto;
     clip-path: var(--card-shape); 
     z-index: 2;
-    box-shadow: inset 0 0 15px var(--card-inner-glow);
-    backdrop-filter: blur(5px);
-    padding: 15px 30px; /* Added extra side padding to keep text away from cuts */
-    border: 1px solid var(--card-outer-border);
+    box-shadow: inset 0 0 600px var(--medium-blue);
+    padding: 15px 30px; /* extra side padding to keep text away from cuts */
     display: flex;
     flex-direction: column;
+    background: rgb(104, 174, 231);
 }
 
-.glassmorphism {
-    background: var(--glass-bg);
-    backdrop-filter: blur(8px);
-    border: 1px solid var(--glass-border);
-    box-shadow: 0 8px 32px 0 var(--glass-shadow);
-}
-
-.dataValue {
-    margin-top: 0px;
-}
-
-.dataLabel {
-    color: var(--secondary);
-}
-
-.hBottom {
+.liquidBackground {
     position: absolute;
-    height: 8px; /* Locked to the thickness of the dash */
-    width: 30%;
-    left: 25%;
-    z-index: 0; 
-    bottom: 7%;
-}
-
-@keyframes dashMove {
-    0% { background-position: 0 0; }
-    100% { background-position: 120px 0; } /* 120 is perfectly divisible by 24px */
-}
-
-
-/* .hRight {
-    position: absolute;
-    width: 36%; 
-    height: 20%; 
-    right: 0;
     top: 0;
-    z-index: 0; 
-
-    clip-path: polygon(100% 100%, 14.28% 100%, 0 0, 100% 0);
-} */
-
-/* 
-.bigDottedLine {
-    margin: 18px;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-        90deg, 
-        var(--neon-cyan) 0%, 
-        var(--neon-cyan) 50%, 
-        transparent 50%, 
-        transparent 100%
-    );
-    
-    background-size: 24px 4px; 
-    background-repeat: repeat-x;
+    z-index: -1;
+    opacity: 20%;
+    pointer-events: none;
+}
 
-    animation: dashMove 10s linear infinite;
-} 
-*/
 
-.smallDottedLine {
+.skillsContent {
+    position: relative;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-        90deg, 
-        var(--neon-cyan) 0%, 
-        var(--neon-cyan) 50%, 
-        transparent 50%, 
-        transparent 100%
-    );
-    
-    /* 2. Controls the dash: 24px total width (12px dash, 12px gap), 4px thick */
-    background-size: 24px 8px; 
-    background-repeat: repeat-x;
-
-    animation: dashMove 10s linear infinite;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    padding: var(--padding-small); /* around all contents, aligned with aboutme */
 }
 
 /* --- EXTERNAL TAB SYSTEM --- */
-
-.tabHeaders {
-    display: flex;
-    gap: 8px;
-    width: 73vw;        
-    max-width: 1425px;
-    margin: 0 auto;        
-    margin-bottom: -1px;   
-    position: relative;
-    z-index: 10;           
-}
 
 .tabButton {
     /* Vertical is fixed 10px, horizontal scales with width clamp(min, preferred, max) */
     padding: 10px clamp(15px, 1.8vw, 40px);
     /* rem is relative to root */
-    font-size: clamp(0.9rem, 1.1vw, 1.2rem);
+    font-size: clamp(0.9rem, var(--font-small), 1.2rem);
     /* This ensures the 'cut' stays proportional to the tab size */
     --slope: clamp(10px, 1.5vw, 20px);
     
@@ -219,8 +118,8 @@
     background-color: rgba(5, 135, 221, 0.05); 
     backdrop-filter: blur(5px);
     box-shadow: 2px 4px 10px 2px rgba(0, 153, 255, 0.4) inset;
-    color: rgb(19, 127, 216);
-    font-family: 'CyberFont', "Share Tech Mono", monospace;
+    color: var(--medium-blue);
+    font-family: var(--font-heading);
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -250,7 +149,7 @@
     );
     background-size: 400% 100%;
     
-    color: var(--secondary);
+    color: var(--off-white);
     text-shadow: 0 0 5px rgba(3, 106, 223, 0.8);
     box-shadow: inset 0px 5px 10px rgba(3, 106, 223, 0.3); 
 }
@@ -262,10 +161,8 @@
 .tabContent {
     height: 100%;
     width: 70%;
-    overflow-y: auto;
-    scrollbar-width: auto;
-    scrollbar-color: var(--neon-cyan) transparent;
-    padding-bottom: calc(100px - 2.8vw);
+    padding-top: 1.5rem;
+    padding-bottom: 3.5vw;
 }
 
 /* for the skills array */
@@ -280,7 +177,7 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    border-left: 2px solid var(--card-outer-border); 
+    border-left: 2px solid var(--transparent-blue); 
     padding-left: 15px;
 }
 
@@ -289,25 +186,50 @@
     flex-wrap: wrap;
     gap: 10px;
 }
-.groupTitle {
-    margin-top: 15px;
-    font-family: 'Orbitron', sans-serif;
-    
-    font-size: clamp(0.8rem, 1.2vw, 1.2rem);
-    
-    color: var(--secondary);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px rgba(0, 240, 250, 0.9);
-}
 
 .individualSkill {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(0, 240, 255, 0.2);
+    background: rgba(25, 74, 148, 0.3);
+    border: 2px solid rgba(25, 99, 148, 0.4);
     padding: clamp(2px, 0.5vw, 4px) clamp(8px, 1vw, 12px);
-    font-family: 'Share Tech Mono', monospace;
-    font-size: clamp(0.75rem, 1vw, 1.1rem);
-    color: var(--secondary);
-    transition: all 0.3s ease;
+    margin-bottom: 1.8rem;
+    font-family: var(--font-paragraph);
+    font-weight: 600;
+    letter-spacing: var(--letter-wide);
+    font-size: clamp(0.75rem, 1.1rem, 1.1rem);
+    color: var(--off-white);
     cursor: pointer;
+}
+
+/* ---- */
+
+.hBottom {
+    position: absolute;
+    height: 8px; /* Locked to the thickness of the dash */
+    width: 30%;
+    left: 25%;
+    z-index: 0; 
+    bottom: 4%;
+}
+
+@keyframes dashMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 120px 0; } /* 120 is perfectly divisible by 24px */
+}
+
+.smallDottedLine {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg, 
+        var(--neon-cyan) 0%, 
+        var(--neon-cyan) 50%, 
+        transparent 50%, 
+        transparent 100%
+    );
+    
+    /* 2. Controls the dash: 24px total width (12px dash, 12px gap), 4px thick */
+    background-size: 24px 8px; 
+    background-repeat: repeat-x;
+
+    animation: dashMove 10s linear infinite;
 }

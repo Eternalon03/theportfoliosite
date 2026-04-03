@@ -1,0 +1,314 @@
+/* Font imports moved to globals.css */
+
+.sectionHeader {
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+}
+
+.experienceContainer {
+    overflow: visible;
+}
+
+/* The Glowing Spine */
+.timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 31px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(
+        to bottom, 
+        transparent, 
+        var(--neon-cyan) 10%, 
+        var(--neon-cyan) 90%, 
+        transparent
+    );
+    box-shadow: 0 0 20px var(--neon-cyan-dim);
+}
+
+/* card and the diamond marker around it container */
+.timelineItem {
+    position: relative;
+    padding-bottom: 4rem;
+    padding-left: 3rem;
+    perspective: 1000px;
+    
+    backface-visibility: hidden;
+    transform: translateZ(0); /* Forces GPU hardware acceleration to snap */
+}
+
+/* Dynamic Connector Line on hover */
+.timelineItem::after {
+    content: '';
+    position: absolute;
+    left: 0; 
+    top: 8px; 
+    height: 2px;
+    width: 0;
+    background: var(--neon-cyan);
+    box-shadow: 0 0 15px var(--neon-cyan);
+    transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: -1;
+}
+.timelineItem:hover::after {
+    width: 3rem; /* so only visible on hover */
+}
+
+/* Diamond Marker */
+.timelineMarker {
+    position: absolute;
+    left: -6px; 
+    top: 2px;
+    width: 14px;
+    height: 14px;
+    background: var(--medium-blue); 
+    border-top: 2px solid var(--neon-cyan);
+    border-left: 2px solid var(--neon-cyan);
+    border-bottom: 2px solid #005f73;
+    border-right: 2px solid #005f73;
+    transform: rotate(45deg);
+    z-index: 2;
+    box-shadow: 0 0 15px var(--neon-cyan-dim);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timelineItem:hover .timelineMarker {
+    transform: rotate(225deg) scale(1.2); /* Spins and grows on hover */
+    box-shadow: 0 0 25px var(--neon-cyan);
+    background: var(--neon-cyan);
+}
+
+/* actual blue card itself */
+.timelineContent {
+    background-color: var(--medium-blue);
+    
+    /* 3D Beveled Borders */
+    border-top: 1px solid var(--neon-cyan);
+    border-left: 1px solid var(--neon-cyan-dim);
+    border-bottom: 2px solid var(--recessed);
+    border-right: 2px solid var(--recessed);
+    
+    padding: var(--padding-medium);
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform-style: preserve-3d; /* Keeps children in 3D space */
+
+    /* Blueprint Grid */
+    background-image: 
+        linear-gradient(var(--transparent-cyan-light) 1px, transparent 1px),
+        linear-gradient(90deg, var(--transparent-cyan-light) 1px, transparent 1px),
+        linear-gradient(var(--transparent-blue) 1px, transparent 1px),
+        linear-gradient(90deg, var(--transparent-blue) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+
+    /* Multi-layered 3D Shadows */
+    box-shadow: 
+        inset 1px 1px 0px var(--highlight-edge), /* Inner highlight */
+        inset -20px -20px 50px rgba(0, 25, 94, 0.5),   /* Inner vignette */
+        10px 15px 25px rgba(0, 25, 94, 0.5);        /* Heavy drop shadow */
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.timelineContent::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* The Texture: You can use a URL or a repeating pattern */
+    background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+    
+    /* Blending: This is the magic part */
+    mix-blend-mode: multiply; 
+    
+    /* Ensure the texture doesn't block clicks or text selection */
+    pointer-events: none;
+    
+    /* Match the parent's border radius if you have one */
+    border-radius: inherit;
+    
+    /* If you want the texture to feel "behind" the text but "on" the card */
+    z-index: 1;
+}
+
+/* Dynamic Hover State */
+.timelineContent:hover {
+    border-color: var(--neon-cyan);
+    /* Lifts up and toward the user */
+    transform: translateY(-8px) translateX(10px) translateZ(20px);
+    box-shadow: 
+        inset 1px 1px 5px var(--highlight-edge),
+        inset -20px -20px 50px rgba(0, 0, 0, 0.6),
+        15px 25px 40px rgba(0, 4, 255, 0.15), /* Glowing drop shadow */
+        20px 30px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* --- Typography --- */
+.timelineTitle, .timelineCompany, .timelineAchievements {
+    margin-top: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.timelineYear {
+    font-family: var(--font-heading), monospace;
+    letter-spacing: var(--letter-wide);
+    font-weight: 600;
+    font-size: clamp(1.0rem, 1.2rem, 1.8rem);
+    color: var(--off-white);
+    text-transform: uppercase;
+    text-shadow: 0 0 10px var(--transparent-cyan); /* Adds emission */
+}
+
+.timelineCompany {
+    font-family: 'Share Tech Mono', monospace;
+    color: #ddf3ff;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+}
+
+/* RECESSED DATA PANEL */
+.achievementsWrapper {
+    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1), opacity 0.4s ease, margin 0.3s ease;
+    overflow: hidden;
+}
+
+.timelineAchievements {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 2rem;
+    background: var(--recessed);
+    border-top: 1px solid rgba(0,0,0,0.3);
+    border-left: 1px solid rgba(0,0,0,0.3);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    border-right: 1px solid rgba(255,255,255,0.3);
+    border-radius: 4px;
+    
+    box-shadow: inset 4px 4px 15px rgba(0, 0, 0, 0.9);
+}
+
+.achievementItem {
+    display: flex;
+    gap: 0.8rem;
+    color: var(--bright-white);
+    font-family: var(--font-paragraph);
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+    margin-bottom: 1.2rem;
+}
+
+.achievementItem::before {
+    content: '>';
+    color: var(--neon-cyan);
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--neon-cyan);
+}
+
+.loadingState {
+    text-align: center;
+    color: var(--medium-blue);
+    font-family: 'Share Tech Mono', monospace;
+    padding: 2rem;
+    font-size: 1.2rem;
+}
+
+.timelineHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.timelineInternship {
+    font-family: var(--font-subheading);
+    font-weight: 500;
+    color: #6dddff;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.achievementCategory {
+    margin-bottom: 1.5rem;
+}
+
+.categoryTitle {
+    font-family: var(--font-subheading);
+    font-weight: 700;
+    font-size: clamp(1.0rem, 1.6rem, 1.6rem);
+    color: var(--neon-cyan);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 8px var(--neon-cyan-dim);
+    border-bottom: 1px solid rgba(0, 229, 255, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+.seeMoreBtn {
+    background: transparent;
+    border: 3px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    font-family: var(--font-heading);
+    font-size: var(--font-small);
+    padding: 6px 15px;
+    margin-top: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 5;
+}
+
+.seeMoreBtn:hover {
+    background: rgba(0, 229, 255, 0.2);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 10px var(--transparent-cyan);
+}
+
+.collapsed {
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
+}
+
+.expanded {
+    opacity: 1;
+    margin-top: 1rem;
+}
+
+/* --- Company Logo --- */
+.companyLogo {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 5px;
+    z-index: 3;
+}
+
+.logoImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}

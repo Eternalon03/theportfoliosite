@@ -7,7 +7,7 @@
     height: 7cqi;
     padding: 0.3cqi;
     /* Use PX for the border to prevent scaling sub-pixel gaps */
-    border: 0.7cqi solid var(--secondary); 
+    border: 0.7cqi solid var(--off-white); 
     box-shadow: 
         0 0 10px rgba(255, 255, 255, 0.3), /* Outer glow */
         inset 0 0 15px rgba(255, 255, 255, 0.2); /* Inner "Glass" depth */
@@ -54,7 +54,7 @@
     font-size: 4cqi;
     cursor: pointer;
     transition: all 0.5s ease;
-    color: var(--secondary);
+    color: var(--off-white);
     transform: translateZ(0);
     background: transparent;
 }
@@ -71,7 +71,7 @@
     transform: translate(-50%, -7cqi);
     font-size: 2cqi; /* Adjusted slightly for the new font */
     border-radius: 4px; /* Squarer corners look more "tech" than 30px pill shapes */
-    color: var(--secondary);
+    color: var(--off-white);
     background: rgba(0, 0, 0, 0.9); /* Darker for better contrast against blur */
     z-index: 1;
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -100,7 +100,7 @@
 }
 
 .icon:hover {
-    color: var(--secondary);
+    color: var(--off-white);
 }
 
 .boldText {

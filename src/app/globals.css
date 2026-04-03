@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Share+Tech+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 @font-face {
     font-family: 'CyberFont'; 
@@ -11,7 +13,7 @@
 *, *::before, *::after {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* border-box ensures padding and border are included in the element's total width and height */
+    box-sizing: border-box;
     border-color: var(--border);
 }
 
@@ -21,13 +23,6 @@ html {
     overflow-x: hidden;
 }
 
-body {
-    font-family: "Rajdhani", sans-serif;
-    background-color: var(--background);
-    color: var(--foreground);
-    width: 100%;
-    overflow-x: hidden;
-}
 
 /* backdrop of whole app, contains three.js background */
 #canvas-container {
@@ -37,21 +32,128 @@ body {
     width: 100vw;
     height: 100vh;
     z-index: -10;
-    background: var(--secondary);
+    background: var(--off-white);
 }
 
 /* =========================================
-  LAYOUT COMPONENTS
+  Reusable parts
 ========================================= */
-.container {
-    width: 100%;
-    max-width: 70.9rem;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 0.5rem;  /* px-5 */
-    padding-right: 0.5rem; /* px-5 */
+
+/*
+Some notes:
+
+Sizing:
+    - px is the only absolute unit that never changes. 
+
+    - rem is relative only to the root (<html>) font size, providing consistent, predictable scaling. 
+    - em is relative to its direct parent element's font size, leading to compounding/nested scaling.
+
+    - vh/vw is Relative to 1% of the viewport's width. Ignore parent.
+        - If you set an element's width to 50vw, it will take up half of the viewport’s width, no matter what screen
+    - % is relative to the parent element's size. 
+        - For example, if you set an element's width to 50%, it will take up half of its parent element’s width.
+
+
+    Thinking in terms of text size? Ems / Rems
+    Thinking of a child compared to a parent? Percentage
+    Thinking in terms of the screen size? Vh Vw Vmin Vmax 
+
+Animation:
+    - Use @keyframes for complex animations. They can loop forever and have multiple "waypoints."
+    - Transitions are best for state changes. They require a trigger
+
+    Transitions:
+        Logic: "If this happens, change property X over Y amount of time."
+            - transition: background-color 0.3s ease-in-out;
+        Best For: Hover effects, button presses, focus states, and simple UI toggles.
+        Limitation: They only move from a start state to an end state. You can't have a "middle" step easily.
+
+    Keyframes:
+        Logic: "Regardless of state, follow this specific timeline of changes."
+        Best For: Loading spinners, pulsing notification badges, complex entrance effects, and infinite background shifts.
+        The Power of %: You can define what happens at 0%, 25%, 50%, and 100% of the timeline.
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); opacity: 0.8; }
+        100% { transform: scale(1); }
+    }
+
+    .badge {
+        animation: pulse 2s infinite;
+    }
+
+
+Spacing:
+    Padding: You want to change the size of the box itself or move the content inside the box away from the edges.
+    Margin: You want to move the box itself further away from other boxes on the page.
+*/
+
+/* Constants
+========================================= */
+:root {
+    --radius: 0.625rem;
+    --bright-white: rgb(255, 253, 246);
+    --off-white: rgb(245, 241, 226);
+    --dark-contrast: rgb(14, 15, 20);
+    --neon-cyan: rgb(0, 240, 255);
+    --bright-blue: rgb(57, 148, 223);
+    --medium-blue: rgb(4, 135, 243);
+
+    --highlight-edge: rgba(255, 255, 255, 0.3);
+    --shadow-edge: rgba(0, 0, 0, 0.8);
+
+    --transparent-blue: rgba(57, 148, 223, 0.5);
+    --transparent-cyan: rgba(0, 240, 255, 0.5);
+    --transparent-cyan-light: rgba(0, 240, 255, 0.2);
+
+    --recessed: rgba(21, 68, 139, 0.6);
+
+    --glitched-duration: 0.9s;
+    --glitched-long-duration: 3s;
+
+    --font-subheading: "Share Tech Mono";
+    --font-special: "Orbitron";
+    --font-heading: "CyberFont";
+    --font-paragraph: "Rajdhani";
+
+    --font-light: 300;
+    --font-medium: 500;
+    --font-bold: 700;
+    --font-black: 900;
+
+    --letter-tight: -0.05em;
+    --letter-normal: 0;
+    --letter-wide: 0.05em;
+
+    --line-height-snug: 1.375;
+    --line-height-normal: 1.5;
+    --line-height-loose: 2;
+
+    --margin-small: 2rem;
+    --margin-medium: 3rem;
+    --margin-big: 4rem;
+
+    --padding-small: 0.5rem;
+    --padding-one: 1rem;
+    --padding-medium: 2.5rem;
+    --padding-big: 4rem;
+
+    --font-small: 1rem;
+    --font-mediumsize: 2rem;
+    --font-big: 3rem;
+
+    --animate-rotate: rotate 4s linear infinite;
+    --animate-scanline: scanline 4s linear infinite;
+    --animate-loading: loading 1.5s infinite linear;
+    --animate-metal-shine: metalShine 5s infinite cubic-bezier(0.43, 0.13, 0.23, 0.96);
+    --animate-dash-move: dashMove 10s linear infinite;
+    --animate-glitch: glitch 10s infinite;
 }
 
+
+/* Layouts
+========================================= */
 .section {
     width: 100%;
     padding: 0.1vw 0;
@@ -59,56 +161,105 @@ body {
     justify-content: center;
 }
 
-/* =========================================
-  CONSTANTS
+.titleContainer {
+    padding-bottom: 3rem;
+}
+
+.container {
+    position: relative;
+    width: 85vw;
+    max-width: 1425px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    margin: 1vh auto;
+
+    overflow: hidden;
+}
+
+
+
+/* Effects
 ========================================= */
-:root {
-    --radius: 0.625rem;
-    --background: #fffdf6;
-    --foreground: oklch(0.145 0 0);
-    --primary: #1C212B;
-    --secondary: rgb(245, 241, 226);
-    --tertiary: #5491dc;
-    --accent: #00e1ff;
-    --error: oklch(0.577 0.245 27.325);
-    --main-blue: rgb(57, 148, 223);
-    --text-blue: rgb(19, 127, 216);
 
-    --glitched-duration: 0.9s;
-    --glitched-long-duration: 3s;
+.glassmorphism {
+    background: rgba(26, 140, 228, 0.9);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(20, 130, 207, 0.9);
+    box-shadow: 0 8px 32px 0 rgba(13, 126, 202, 0.9);
 }
 
-.dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
+.glass-light {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* =========================================
-   GLOBAL TYPOGRAPHY
+.neon-glow-cyan {
+    text-shadow: 0 0 10px var(--neon-cyan);
+    box-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.neon-glow-cyan-dim {
+    text-shadow: 0 0 5px rgba(0, 229, 255, 0.3);
+    box-shadow: 0 0 5px rgba(0, 229, 255, 0.3);
+}
+
+/* Animations
 ========================================= */
-h1, h2, h3, h4, h5, h6 {
-    color: var(--primary);
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
-h1 {
-    font-size: 1.5rem; /* Equivalent to text-2xl */
-    font-weight: 400;
+@keyframes scanline {
+    0% { top: 0%; }
+    100% { top: 100%; }
 }
 
-h2 { font-size: calc(0.5vw + 1.4rem); font-weight: 400; } /* text-3xl */
-h3 { font-size: 1.5rem; font-weight: 400; }    /* text-2xl */
-
-h4 { font-size: 1.125rem; font-weight: 500; } /* text-lg */
-@media (min-width: 640px) { h4 { font-size: 1.25rem; } }  /* sm:text-xl */
-
-h5 { font-size: 1rem; font-weight: 500; }     /* text-base */
-@media (min-width: 640px) { h5 { font-size: 1.125rem; } } /* sm:text-lg */
-
-h6 { font-size: 1rem; font-weight: 400; }     /* text-base */
-
-p {
-    font-size: 1rem;
-    font-weight: 400;
-    color: var(--secondary);
+@keyframes loading {
+    0% { transform: translateX(-40px); }
+    100% { transform: translateX(200px); }
 }
+
+@keyframes metalShine {
+    0% { left: -60%; }
+    20% { left: 120%; }
+    100% { left: 120%; }
+}
+
+@keyframes dashMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 120px 0; }
+}
+
+@keyframes glitch {
+    0%, 100% { opacity: 0; }
+    5%, 10% { opacity: 1; }
+    15% { opacity: 0; }
+    20% { opacity: 1; }
+    25% { opacity: 0; }
+    30% { opacity: 1; }
+    35% { opacity: 0; }
+    40% { opacity: 1; }
+    45% { opacity: 0; }
+    50% { opacity: 1; }
+    55% { opacity: 0; }
+    60% { opacity: 1; }
+    65% { opacity: 0; }
+    70% { opacity: 1; }
+    75% { opacity: 0; }
+    80% { opacity: 1; }
+    85% { opacity: 0; }
+    90% { opacity: 1; }
+    95% { opacity: 0; }
+}
+
+.animate-rotate { animation: rotate 4s linear infinite; }
+.animate-scanline { animation: scanline 4s linear infinite; }
+.animate-loading { animation: loading 1.5s infinite linear; }
+.animate-metal-shine { animation: metalShine 5s infinite cubic-bezier(0.43, 0.13, 0.23, 0.96); }
+.animate-dash-move { animation: dashMove 10s linear infinite; }
+.animate-glitch { animation: glitch 10s infinite; }

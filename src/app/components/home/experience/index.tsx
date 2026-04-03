@@ -1,34 +1,153 @@
 "use client";
-import Image from "next/image"
+import styles from "./Experience.module.css";
 import { useEffect, useState } from "react";
+import { motion, Variants } from 'framer-motion';
+import FutureHeader from "@/app/futureHeader/FutureHeader";
+
+interface ExperienceItem {
+    logo: string;
+    role: string;
+    location: string;
+    date: string;
+    internship?: string;
+    bulletPoints: Array<[string, string[]]>;
+}
 
 const Experience = () => {
-    const [experienceData, setExperienceData] = useState<any>(null);
+    const [experienceData, setExperienceData] = useState<ExperienceItem[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    
+    // CHANGE: Store an array of numbers instead of a single number
+    const [expandedIndices, setExpandedIndices] = useState<number[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch('/api/page-data')
-                if (!res.ok) throw new Error('Failed to fetch')
-                const data = await res.json()
-                setExperienceData(data?.experienceData)
+                const res = await fetch('/api/page-data');
+                if (!res.ok) throw new Error('Failed to fetch');
+                const data = await res.json();
+                setExperienceData(data?.experienceData || []);
             } catch (error) {
-                console.error('Error fetching services:', error)
+                console.error('Error fetching experience data:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchData();
+    }, []);
+
+    // Helper to toggle the presence of an index in the array
+    const toggleExpand = (index: number) => {
+        setExpandedIndices((prev) =>
+            prev.includes(index)
+                ? prev.filter((i) => i !== index) // Remove if exists
+                : [...prev, index]                // Add if not exists
+        );
+    };
+
+    const mechanicalReveal: Variants = {
+        hidden: { opacity: 0, x: -40, filter: 'blur(4px)' },
+        visible: { 
+            opacity: 1, 
+            x: 0, 
+            filter: 'blur(0px)', // Animates down to 0
+            transition: { type: 'spring', stiffness: 120, damping: 14, mass: 1.2 },
+            // MAGIC FIX: Strips the filter off the DOM element when done
+            transitionEnd: { 
+                filter: 'none' 
             }
         }
+    };
 
-        fetchData()
-    }, [])
+    const formatText = (text: string) => {
+        // Regex splits the string at **bold** markers
+        const parts = text.split(/(\*\*.*?\*\*)/g);
+        return parts.map((part, index) => {
+            if (part.startsWith('**') && part.endsWith('**')) {
+                // Remove the asterisks and wrap in <strong>
+                return <strong key={index}>{part.slice(2, -2)}</strong>;
+            }
+            return part;
+        });
+    };
+
+    if (isLoading) {
+        return (
+            <section id="experience" className="section">
+                <div className="container">
+                    <div className={styles.sectionHeader}>
+                        <FutureHeader level={2} text="Experience" color="var(--text-blue)"/>
+                    </div>
+                    <div className={styles.loadingState}>Loading experience...</div>
+                </div>
+            </section>
+        );
+    }
 
     return (
-        <section>
-            <div className="container">
-                <div className="border-x border-primary/10">
+        <section id="experience" className="section">
+            <div className={`${styles.experienceContainer} container`}> 
+                <div className="titleContainer">
+                    <FutureHeader level={2} text="Experience" color="var(--medium-blue)"/>
+                </div>
+                <div className={styles.timeline}>
+                    {experienceData.map((item, index) => {
+                        // Check if this specific index is in our expanded list
+                        const isExpanded = expandedIndices.includes(index);
+
+                        return (
+                            <motion.div 
+                                key={index}
+                                className={styles.timelineItem}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, margin: "-100px" }}
+                                variants={mechanicalReveal}
+                            >
+                                <div className={styles.timelineMarker}></div>
+                                <div className={styles.timelineContent}>
+                                    <div className={styles.companyLogo}>
+                                        <img src={item.logo} alt="Logo" className={styles.logoImage} />
+                                    </div>
+                                    
+                                    <div className={styles.timelineHeader}>
+                                        <div className={styles.timelineYear}>{item.date}</div>
+                                        {item.internship && (
+                                            <div className={styles.timelineInternship}>{item.internship}</div>
+                                        )}
+                                    </div>
+                                    <FutureHeader level={1} text={item.role} color="var(--off-white)"/>
+                                    <div className={styles.timelineCompany}>{item.location}</div>
+                                    
+                                    <button 
+                                        className={styles.seeMoreBtn}
+                                        onClick={() => toggleExpand(index)}
+                                    >
+                                        {isExpanded ? "- MINIMIZE" : "+ SEE DETAILS"}
+                                    </button>
+
+                                    <div className={`${styles.achievementsWrapper} ${isExpanded ? styles.expanded : styles.collapsed}`}>
+                                        <div className={styles.timelineAchievements}>
+                                            {item.bulletPoints.map(([category, points], categoryIndex) => (
+                                                <div key={categoryIndex} className={styles.achievementCategory}>
+                                                    <h4 className={styles.categoryTitle}>{category}</h4>
+                                                    {points.map((point, pointIndex) => (
+                                                        <div key={pointIndex} className={styles.achievementItem}>
+                                                            <span>{formatText(point)}</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        );
+                    })}
                 </div>
             </div>
         </section>
+    );
+};
 
-    )
-}
-
-export default Experience
+export default Experience;

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import * as THREE from "three";
 import styles from "./HeroSection.module.css";
 import SocialLinks from "./sociallinks";
 
@@ -10,166 +9,16 @@ const HeroSection = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     // Refs for DOM elements
-    const mountRef = useRef<HTMLDivElement>(null);
-    const cardRef = useRef<HTMLDivElement>(null);
-    const glowRef = useRef<HTMLDivElement>(null);
+    const cardRef = useRef<HTMLDivElement | null>(null);
+    const glowRef = useRef<HTMLDivElement | null>(null);
 
-    // Three.js Setup
+    // Loading screen timeout
     useEffect(() => {
-        // Handle loading screen timeout
         const timer = setTimeout(() => {
             setIsLoading(false);
         }, 1500);
 
-        const container = mountRef.current;
-        if (!container) return;
-
-        // Scene, Camera, Renderer
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(
-            75,
-            window.innerWidth / window.innerHeight,
-            0.1,
-            1000
-        );
-        camera.position.z = 5;
-
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
-        container.appendChild(renderer.domElement);
-
-        // Lights
-        const ambientLight = new THREE.AmbientLight(0x222244, 0.5);
-        scene.add(ambientLight);
-
-        const directionalLight = new THREE.DirectionalLight(0x00c3ff, 0.8);
-        directionalLight.position.set(5, 5, 5);
-        scene.add(directionalLight);
-
-        const pointLight1 = new THREE.PointLight(0xff0055, 1, 10);
-        pointLight1.position.set(-2, 1, 3);
-        scene.add(pointLight1);
-
-        const pointLight2 = new THREE.PointLight(0x00c3ff, 1, 10);
-        pointLight2.position.set(2, -1, 3);
-        scene.add(pointLight2);
-
-        // Particles
-        const particleCount = 1000;
-        const particles = new THREE.BufferGeometry();
-        const positions = new Float32Array(particleCount * 3);
-        const sizes = new Float32Array(particleCount);
-
-        for (let i = 0; i < particleCount; i++) {
-            positions[i * 3] = (Math.random() - 0.5) * 20;
-            positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
-            positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
-            sizes[i] = Math.random() * 0.1;
-        }
-
-        particles.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-        particles.setAttribute("size", new THREE.BufferAttribute(sizes, 1));
-
-        const particleMaterial = new THREE.PointsMaterial({
-            color: 0x00c3ff,
-            size: 0.1,
-            transparent: true,
-            blending: THREE.AdditiveBlending,
-            sizeAttenuation: true,
-        });
-
-        const particleSystem = new THREE.Points(particles, particleMaterial);
-        scene.add(particleSystem);
-
-        // Grid
-        const gridSize = 20;
-        const gridDivisions = 20;
-        const gridMaterial = new THREE.LineBasicMaterial({
-            color: 0x00c3ff,
-            transparent: true,
-            opacity: 0.2,
-        });
-
-        const gridHelper = new THREE.GridHelper(
-            gridSize,
-            gridDivisions,
-            0xff0055,
-            0x00c3ff
-        );
-        gridHelper.position.y = -3;
-        gridHelper.material = gridMaterial;
-        scene.add(gridHelper);
-
-        // Sphere
-        const sphereGeometry = new THREE.SphereGeometry(2, 16, 16);
-        const lineMaterial = new THREE.LineBasicMaterial({
-            color: 0xff0055,
-            transparent: true,
-            opacity: 0.1,
-        });
-
-        // Event Listeners
-        let mouseX = 0;
-        let mouseY = 0;
-        let targetX = 0;
-        let targetY = 0;
-
-        const handleResize = () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        };
-
-        const handleMouseMove = (event: MouseEvent) => {
-            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-        };
-
-        window.addEventListener("resize", handleResize);
-        window.addEventListener("mousemove", handleMouseMove);
-
-        // Animation Loop
-        let animationFrameId: number;
-        const animate = () => {
-            animationFrameId = requestAnimationFrame(animate);
-
-            const posArray = particleSystem.geometry.attributes.position.array;
-            for (let i = 0; i < particleCount; i++) {
-                posArray[i * 3 + 2] += 0.01;
-                if (posArray[i * 3 + 2] > 10) {
-                    posArray[i * 3 + 2] = -10;
-                }
-            }
-            particleSystem.geometry.attributes.position.needsUpdate = true;
-
-            targetX = mouseX * 0.2;
-            targetY = mouseY * 0.2;
-
-            camera.position.x += (targetX - camera.position.x) * 0.05;
-            camera.position.y += (targetY - camera.position.y) * 0.05;
-            camera.lookAt(scene.position);
-
-            renderer.render(scene, camera);
-        };
-
-        animate();
-
-        // Cleanup function (Crucial for React strict mode / page navigation)
-        return () => {
-            clearTimeout(timer);
-            window.removeEventListener("resize", handleResize);
-            window.removeEventListener("mousemove", handleMouseMove);
-            cancelAnimationFrame(animationFrameId);
-            if (container && renderer.domElement) {
-                container.removeChild(renderer.domElement);
-            }
-            // Dispose of Three.js objects to prevent memory leaks
-            renderer.dispose();
-            sphereGeometry.dispose();
-            particleMaterial.dispose();
-            lineMaterial.dispose();
-        };
+        return () => clearTimeout(timer);
     }, []);
 
     // 3D Card Hover Logic
@@ -204,9 +53,6 @@ const HeroSection = () => {
                     <div className={styles["loading-bar"]}></div>
                 </div>
             )}
-
-            {/* Three.js Canvas Container */}
-            <div id="canvas-container" ref={mountRef}></div>
 
             {/* Cyberpunk Card Container */}
             <div

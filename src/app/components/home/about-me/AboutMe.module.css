@@ -1,19 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;500;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
-
 /* not making this module.css didn't loudly break, but i stopped being able to see live refreshes */
 
 .aboutContainer {
-    position: relative;
-    margin: 0 auto;
-    width: 85vw;
-    max-width: 1425px;
-    background: var(--background);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    overflow: hidden;
-    
+    background: var(--bright-white);
     clip-path: polygon(
         0 0, 
         calc(100% - 40px) 0, 
@@ -27,17 +15,19 @@
 
 .aboutContainer::before {
     content: '';
+    background: linear-gradient(90deg, var(--transparent-blue) 0%, var(--transparent-cyan) 100%);
+    width: 400px; 
+    height: 200vw; 
     position: absolute;
     top: 50%;
     left: 50%;
     transform-origin: center;
-    width: 400px; 
-    height: 200vw; 
+
     margin-top: -100vw;
     margin-left: -200px;
-    background: linear-gradient(rgba(84, 145, 220, 0.2), rgba(0, 225, 255, 0.2));
-    filter: blur(10px);
-    animation: rotate 4s linear infinite;
+
+    filter: blur(15px);
+    animation: var(--animate-rotate)
 }
 
 /* Hides center of the laser */
@@ -45,7 +35,7 @@
     content: '';
     position: absolute;
     inset: 8px; /* Thickness of the laser border */
-    background: var(--background);
+    background: var(--bright-white);
     
     clip-path: polygon(
         0 0, 
@@ -57,33 +47,28 @@
     );
 }
 
-@keyframes rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
 .aboutContent {
     position: relative;
     z-index: 10;
-    padding: 2.5rem 2rem; 
+    padding: var(--padding-medium); 
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: var(--padding-one);
 }
 
 .aboutDescription {
-    font-size: 1rem;
-    font-weight: 400;
+    font-family: var(--font-paragraph);
+    font-size: var(--font-mediumsize);
+    font-weight: var(--font-medium);
     line-height: 1.6;
-    color: var(--primary);
-    margin: 0;
+    color: var(--dark-contrast);
+    margin: var(--padding-small);
 }
 
 .highlight {
-    background: linear-gradient(90deg, rgba(77, 204, 243, 0.4) 0%, rgba(243,202,77,0.05) 100%);
+    background: linear-gradient(90deg, var(--transparent-cyan) 0%, rgba(243,202,77,0.05) 100%);
     padding: 0 0.25rem;
     border-radius: 2px;
-    color: var(--primary);
 }
 
 @media (min-width: 768px) {
