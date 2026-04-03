@@ -62,6 +62,14 @@ const Header = () => {
                                 Experience
                             </button>
                         </li>
+                        <li>
+                            <button 
+                                onClick={() => scrollToSection('projects')}
+                                className={styles.navLink}
+                            >
+                                Projects
+                            </button>
+                        </li>
                     </ul>
                 </div>
             </nav>

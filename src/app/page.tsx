@@ -3,6 +3,7 @@ import AboutMe from "./components/home/about-me"
 import Education from "./components/home/skills"
 import Experience from "./components/home/experience"
 import HeroSection from "./components/home/hero-section"
+import Projects from "./components/home/projects"
 import ThreeScene from "./components/three-scene"
 
 
@@ -24,6 +25,9 @@ const page = () => {
       <Divider/>
       <section id="experience">
         <Experience/>
+      </section>
+      <section id="projects">
+        <Projects/>
       </section>
       <Divider/>
     </main>

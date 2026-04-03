@@ -97,8 +97,8 @@ Spacing:
     --off-white: rgb(245, 241, 226);
     --dark-contrast: rgb(14, 15, 20);
     --neon-cyan: rgb(0, 240, 255);
-    --bright-blue: rgb(57, 148, 223);
-    --medium-blue: rgb(4, 135, 243);
+    --bright-blue: #3994df;
+    --medium-blue: #0487f3;
 
     --highlight-edge: rgba(255, 255, 255, 0.3);
     --shadow-edge: rgba(0, 0, 0, 0.8);
@@ -175,7 +175,15 @@ Spacing:
 
     margin: 1vh auto;
 
-    overflow: hidden;
+    overflow: visible;
+}
+
+.loadingState {
+    text-align: center;
+    color: var(--medium-blue);
+    font-family: 'Share Tech Mono', monospace;
+    padding: 2rem;
+    font-size: 1.2rem;
 }
 
 
@@ -220,8 +228,12 @@ Spacing:
 }
 
 @keyframes loading {
-    0% { transform: translateX(-40px); }
-    100% { transform: translateX(200px); }
+    0% { 
+        transform: translateX(-100%); 
+    }
+    100% { 
+        transform: translateX(400%);
+    }
 }
 
 @keyframes metalShine {

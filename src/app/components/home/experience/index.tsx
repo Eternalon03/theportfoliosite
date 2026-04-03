@@ -1,7 +1,6 @@
 "use client";
 import styles from "./Experience.module.css";
 import { useEffect, useState } from "react";
-import { motion, Variants } from 'framer-motion';
 import FutureHeader from "@/app/futureHeader/FutureHeader";
 
 interface ExperienceItem {
@@ -16,8 +15,6 @@ interface ExperienceItem {
 const Experience = () => {
     const [experienceData, setExperienceData] = useState<ExperienceItem[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-    
-    // CHANGE: Store an array of numbers instead of a single number
     const [expandedIndices, setExpandedIndices] = useState<number[]>([]);
 
     useEffect(() => {
@@ -36,7 +33,6 @@ const Experience = () => {
         fetchData();
     }, []);
 
-    // Helper to toggle the presence of an index in the array
     const toggleExpand = (index: number) => {
         setExpandedIndices((prev) =>
             prev.includes(index)
@@ -45,26 +41,10 @@ const Experience = () => {
         );
     };
 
-    const mechanicalReveal: Variants = {
-        hidden: { opacity: 0, x: -40, filter: 'blur(4px)' },
-        visible: { 
-            opacity: 1, 
-            x: 0, 
-            filter: 'blur(0px)', // Animates down to 0
-            transition: { type: 'spring', stiffness: 120, damping: 14, mass: 1.2 },
-            // MAGIC FIX: Strips the filter off the DOM element when done
-            transitionEnd: { 
-                filter: 'none' 
-            }
-        }
-    };
-
     const formatText = (text: string) => {
-        // Regex splits the string at **bold** markers
         const parts = text.split(/(\*\*.*?\*\*)/g);
         return parts.map((part, index) => {
             if (part.startsWith('**') && part.endsWith('**')) {
-                // Remove the asterisks and wrap in <strong>
                 return <strong key={index}>{part.slice(2, -2)}</strong>;
             }
             return part;
@@ -76,9 +56,9 @@ const Experience = () => {
             <section id="experience" className="section">
                 <div className="container">
                     <div className={styles.sectionHeader}>
-                        <FutureHeader level={2} text="Experience" color="var(--text-blue)"/>
+                        <FutureHeader level={2} text="Experience" color="var(--medium-blue)"/>
                     </div>
-                    <div className={styles.loadingState}>Loading experience...</div>
+                    <div className="loadingState">Loading experience...</div>
                 </div>
             </section>
         );
@@ -92,17 +72,12 @@ const Experience = () => {
                 </div>
                 <div className={styles.timeline}>
                     {experienceData.map((item, index) => {
-                        // Check if this specific index is in our expanded list
                         const isExpanded = expandedIndices.includes(index);
 
                         return (
-                            <motion.div 
+                            <div 
                                 key={index}
                                 className={styles.timelineItem}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true, margin: "-100px" }}
-                                variants={mechanicalReveal}
                             >
                                 <div className={styles.timelineMarker}></div>
                                 <div className={styles.timelineContent}>
@@ -141,7 +116,7 @@ const Experience = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </motion.div>
+                            </div>
                         );
                     })}
                 </div>

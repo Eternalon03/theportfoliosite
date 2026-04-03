@@ -36,10 +36,7 @@
     position: relative;
     padding-bottom: 4rem;
     padding-left: 3rem;
-    perspective: 1000px;
-    
-    backface-visibility: hidden;
-    transform: translateZ(0); /* Forces GPU hardware acceleration to snap */
+    transition: transform 0.3s ease;
 }
 
 /* Dynamic Connector Line on hover */
@@ -87,16 +84,12 @@
 .timelineContent {
     background-color: var(--medium-blue);
     
-    /* 3D Beveled Borders */
-    border-top: 1px solid var(--neon-cyan);
-    border-left: 1px solid var(--neon-cyan-dim);
-    border-bottom: 2px solid var(--recessed);
-    border-right: 2px solid var(--recessed);
+    /* Simple borders */
+    border: 1px solid var(--neon-cyan);
     
     padding: var(--padding-medium);
     position: relative;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    transform-style: preserve-3d; /* Keeps children in 3D space */
+    transition: all 0.3s ease;
 
     /* Blueprint Grid */
     background-image: 
@@ -106,11 +99,8 @@
         linear-gradient(90deg, var(--transparent-blue) 1px, transparent 1px);
     background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
 
-    /* Multi-layered 3D Shadows */
-    box-shadow: 
-        inset 1px 1px 0px var(--highlight-edge), /* Inner highlight */
-        inset -20px -20px 50px rgba(0, 25, 94, 0.5),   /* Inner vignette */
-        10px 15px 25px rgba(0, 25, 94, 0.5);        /* Heavy drop shadow */
+    /* Simple shadow */
+    box-shadow: 0 4px 15px rgba(0, 25, 94, 0.3);
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -140,16 +130,14 @@
     z-index: 1;
 }
 
-/* Dynamic Hover State */
+/* Simple Hover State */
 .timelineContent:hover {
     border-color: var(--neon-cyan);
-    /* Lifts up and toward the user */
-    transform: translateY(-8px) translateX(10px) translateZ(20px);
+    /* Lifts up and scales slightly */
+    transform: translateY(-8px) scale(1.02);
     box-shadow: 
-        inset 1px 1px 5px var(--highlight-edge),
-        inset -20px -20px 50px rgba(0, 0, 0, 0.6),
-        15px 25px 40px rgba(0, 4, 255, 0.15), /* Glowing drop shadow */
-        20px 30px 40px rgba(0, 0, 0, 0.6);
+        0 8px 25px rgba(0, 4, 255, 0.2),
+        0 12px 30px rgba(0, 0, 0, 0.3);
 }
 
 /* --- Typography --- */
@@ -216,14 +204,6 @@
     color: var(--neon-cyan);
     font-weight: bold;
     text-shadow: 0 0 5px var(--neon-cyan);
-}
-
-.loadingState {
-    text-align: center;
-    color: var(--medium-blue);
-    font-family: 'Share Tech Mono', monospace;
-    padding: 2rem;
-    font-size: 1.2rem;
 }
 
 .timelineHeader {

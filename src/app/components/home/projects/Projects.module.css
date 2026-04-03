@@ -1,0 +1,307 @@
+/* Projects Section Styles */
+
+.containerOfAll {
+    background: rgba(0,0,0,0);
+    position: relative;
+    padding-bottom: 2rem;
+    overflow: visible;
+}
+
+.metallicBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1; /* Basement layer */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem; 
+    align-items: center; 
+    justify-content: center;
+}
+
+.metallicRectangle {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #3994df;
+    background: linear-gradient(135deg, #0487f355 25%, transparent 25%) -34px 0/ 68px 68px, linear-gradient(225deg, #0487f3 25%, transparent 25%) -34px 0/ 68px 68px, linear-gradient(315deg, #0487f355 25%, transparent 25%) 0px 0/ 68px 68px, linear-gradient(45deg, #0487f3 25%, #3994df 25%) 0px 0/ 68px 68px;
+}
+
+.metallicRectangleBase {
+    border: 4px solid var(--medium-blue);
+    background: #44a5ff; /* Blue background for shader to render on */
+    position: relative;
+    width: 100%;
+    height: 250px;
+
+    clip-path: polygon(
+        /* Top Edge */
+        30px 0%, 100% 0%, 
+        /* Right Edge */
+        100% calc(100% - 30px), 
+        /* Bottom Edge */
+        calc(100% - 30px) 100%, 0% 100%, 
+        /* Left Edge */
+        0% 30px
+    );
+
+    overflow: hidden;
+}
+
+.projectsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    padding: 0 var(--padding-small);
+    
+    /* ADD THESE */
+    position: relative; 
+    z-index: 10; /* Anything higher than the -1 of the background */
+    overflow: visible; /* Explicitly set this */
+}
+
+.projectCard {
+    position: relative;
+    z-index: 11;
+    background: var(--off-white); 
+    overflow: visible; 
+    margin: 1.2rem;
+    border-radius: var(--radius);
+    transition: all 0.3s ease;
+    border: 2px solid var(--transparent-cyan);
+    box-shadow: 0 10px 10px rgba(0, 34, 129, 0.3);
+}
+
+.projectContent {
+    padding: var(--padding-medium);
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.projectContentMain {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.projectContentFooter {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Container for both images */
+.projectImageWrapper {
+    position: relative;
+    width: 100%;
+    /* Maintain aspect ratio regardless of resize */
+    aspect-ratio: 16 / 9; 
+    margin-bottom: 1.5rem; /* Consistent space between image and text */
+    background: rgba(0,0,0,0.05); /* Optional placeholder tint */
+    border-radius: calc(var(--radius) / 2);
+    overflow: visible; /* Allow overlay to overflow */
+}
+
+/* 1. The Cropping Container */
+.baseImageCrop {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* This acts as the "frame" that doesn't move */
+    border-radius: calc(var(--radius) / 2);
+    position: relative;
+}
+
+.baseImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: inherit;
+    transition: transform 0.3s ease;
+}
+
+.overlayImage {
+    position: absolute;
+    /* Center it horizontally */
+    left: 50%;
+    transform: translateX(-50%);
+    /* Make it taller than the container to create overflow */
+    height: 140%; 
+    bottom: -2rem; /* Align to the bottom of the base image */
+    width: auto;
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 2;
+    
+    transition: transform 0.3s ease;
+}
+
+.projectCard:hover .baseImage {
+    /* Zooms the image ONLY, while baseImageCrop keeps the container size fixed */
+    transform: scale(1.05);
+}
+
+.projectCard:hover .overlayImage {
+    transform: translateX(-50%) scale(1.05);
+}
+
+.projectCard:hover {
+    /* Moves the card up 5px */
+    transform: translateY(-5px);
+    
+    box-shadow: 
+        0 10px 10px rgba(0, 31, 117, 0.4),
+        0 0 10px var(--transparent-cyan);
+    border-color: var(--neon-cyan);
+    overflow: visible;
+}
+
+.projectTitle {
+    /* Now inherits the same padding constraints as the image above it */
+    font-family: var(--font-heading);
+    font-size: clamp(1.2rem, 2rem, 2rem);
+    font-weight: var(--font-bold);
+    color: var(--medium-blue);
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+}
+
+.projectDescription {
+    font-family: var(--font-paragraph);
+    font-size: var(--font-medium);
+    line-height: var(--line-height-normal);
+    color: var(--medium-blue);
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.projectBulletpoints {
+    margin-bottom: 1.5rem;
+}
+
+.bulletpoint {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-paragraph);
+    font-size: var(--font-medium);
+    line-height: var(--line-height-normal);
+    color: var(--medium-blue);
+    opacity: 0.9;
+}
+
+.bulletIcon {
+    color: var(--neon-cyan);
+    font-weight: bold;
+    margin-right: 0.5rem;
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+}
+
+.bulletText {
+    flex: 1;
+}
+
+.techStack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0;
+}
+
+.techTag {
+    background: var(--medium-blue);
+    color: var(--off-white);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-family: var(--font-subheading);
+    font-size: 0.8rem;
+    font-weight: var(--font-medium);
+    border: 1px solid var(--medium-blue);
+    transition: all 0.2s ease;
+}
+
+.techTag:hover {
+    background: var(--medium-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 240, 255, 0.3);
+}
+
+.projectLinks {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.projectLink {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background: transparent;
+    color: var(--medium-blue);
+    text-decoration: none;
+    font-family: var(--font-subheading);
+    font-size: 0.9rem;
+    font-weight: var(--font-medium);
+    border: 3px solid var(--medium-blue);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.projectLink:hover {
+    background: var(--medium-blue);
+    color: var(--off-white);
+    box-shadow: 0 0 15px var(--transparent-cyan);
+    transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .projectsGrid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0;
+    }
+    
+    .projectContent {
+        padding: var(--padding-one);
+    }
+    
+    .projectLinks {
+        flex-direction: column;
+    }
+    
+    .projectLink {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .projectTitle {
+        font-size: 1.1rem;
+    }
+    
+    .projectDescription {
+        font-size: 0.9rem;
+    }
+    
+    .techStack {
+        gap: 0.3rem;
+    }
+    
+    .techTag {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.6rem;
+    }
+}

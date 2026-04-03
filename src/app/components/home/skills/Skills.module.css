@@ -103,7 +103,7 @@
     /* Vertical is fixed 10px, horizontal scales with width clamp(min, preferred, max) */
     padding: 10px clamp(15px, 1.8vw, 40px);
     /* rem is relative to root */
-    font-size: clamp(0.9rem, var(--font-small), 1.2rem);
+    font-size: clamp(0.9rem, 1.5rem, 1.5rem);
     /* This ensures the 'cut' stays proportional to the tab size */
     --slope: clamp(10px, 1.5vw, 20px);
     

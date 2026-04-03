@@ -128,11 +128,38 @@ const educationData = [
 
 
 const projectOverview = {
-    caseStudies: [
-        { name: "test", url: "#" },
-    ],
     sideProjects: [
-        { name: "Turtle Game", url: "#" }
+        { 
+            name: "Wrath of Daedalus",
+            image: "/images/projects/wrathofdaedalus.png",
+            overlayImg: "/images/projects/icarus.png",
+            buttonOne: ["Itch.io", "https://eternalon03.itch.io/wrath-of-daedalus"],
+            buttonTwo: ["GitHub", "https://github.com/oman276/UWJamW25"],
+            description: "A fast-paced action game where you play as steampunk Icarus, defeating an endless set of his father's mechanical creations while managing the heat! Attacking uses fire, and if he gets too hot his wings melt into the sea below him." ,
+            bulletpoints: [
+                "Polished camera system using lerping and easing for smooth, responsive movement",
+                "2D pathfinding system, avoiding calculating every frame for CPU optimization",
+                "Fully animated 2D skeleton system with custom animation controller",
+                "Created for the University of Waterloo's Winter Game Development Club's game jam, while also helping to run the jam as an exec",
+            ],
+
+            skills: ["Godot", "GDScript"],
+        },
+        { 
+            name: "CoinTrail: Gamified Deals and Expense Tracking",
+            image: "/images/projects/cointrail.png",
+            overlayImg: "/images/projects/cointrail_overlay.png",
+            buttonOne: ["Video Demo", "https://youtu.be/dfk_-6fy-4o"],    
+            buttonTwo: ["GitHub", "https://github.com/Eternalon03/Cointrail-Expense-Tracker"],
+            description: "A full-stack financial platform using Kotlin/Jetpack Compose and FastAPI, integrating a global community deal-hunting module with a real-time voting system amd an XP-based leveling system with a virtual pet that reacts dynamically to the user's financial goal progress" ,
+            bulletpoints: [
+                "High-scale application on a Kubernetes (K8S) cluster with Horizontal Pod Autoscaling, created with Kotlin/Jetpack Compose and Python FastAPI",
+                "Event-Driven notification system utilizing Firebase Cloud Messaging, decoupling backend event triggers from the client",
+                "Created with a 6-person team, documenting functional and non-functional requirements, and detailed system architecture",
+            ],
+            skills: ["Kotlin", "Jetpack Compose", "Python", "FastAPI", "PostgreSQL", "Kubernetes", "Docker", "GCP Firebase"],
+        }
+        
     ]
 };
 

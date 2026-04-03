@@ -76,7 +76,18 @@ const Skills = () => {
         }, {} as Record<string, Skill[]>);
     }, [skillsData, activeTab]);
 
-    if (isLoading) return <div className="p-10 text-center opacity-50">Loading Skills...</div>;
+    if (isLoading) {
+        return (
+            <section id="experience" className="section">
+                <div className="container">
+                    <div className={styles.sectionHeader}>
+                        <FutureHeader level={2} text="Skills" color="var(--medium-blue)"/>
+                    </div>
+                    <div className="loadingState">Loading skills...</div>
+                </div>
+            </section>
+        );
+    }
     if (!skillsData) return null;
 
     return (
