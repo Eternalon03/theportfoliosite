@@ -58,7 +58,7 @@
 
 .aboutDescription {
     font-family: var(--font-paragraph);
-    font-size: var(--font-mediumsize);
+    font-size: var(--clamp-base);
     font-weight: var(--font-medium);
     line-height: 1.6;
     color: var(--dark-contrast);
@@ -72,7 +72,7 @@
 }
 
 @media (min-width: 768px) {
-    .aboutDescription {
+    /* .aboutDescription {
         font-size: 1.25rem; 
-    }
+    } */
 }

@@ -40,9 +40,12 @@
     gap: 8px;
     margin-bottom: -0.2rem;   
     position: relative;
-    z-index: 1;           
+    z-index: 1;
 }
 
+.tabHeaders > * {
+    white-space: nowrap; /* Prevent line breaks */
+}
 
 .hCardBorder {
     /* THE FIX: Forces this element into the first grid cell */
@@ -101,11 +104,11 @@
 
 .tabButton {
     /* Vertical is fixed 10px, horizontal scales with width clamp(min, preferred, max) */
-    padding: 10px clamp(15px, 1.8vw, 40px);
+    padding: 10px var(--clamp-xl);
     /* rem is relative to root */
-    font-size: clamp(0.9rem, 1.5rem, 1.5rem);
+    font-size: clamp(0.9rem, 1.2rem, 1.3rem);
     /* This ensures the 'cut' stays proportional to the tab size */
-    --slope: clamp(10px, 1.5vw, 20px);
+    --slope: var(--clamp-sm);
     
     clip-path: polygon(
         0 0, 
@@ -125,6 +128,8 @@
     transition: all 0.3s ease;
     outline: none;
     border: none;
+    white-space: nowrap; /* Prevent line breaks */
+    flex-shrink: 0; /* Prevent shrinking */
 }
 
 .tabButton:hover {
@@ -190,12 +195,13 @@
 .individualSkill {
     background: rgba(25, 74, 148, 0.3);
     border: 2px solid rgba(25, 99, 148, 0.4);
-    padding: clamp(2px, 0.5vw, 4px) clamp(8px, 1vw, 12px);
+    padding: var(--clamp-xs) var(--clamp-sm);
     margin-bottom: 1.8rem;
     font-family: var(--font-paragraph);
+    line-height: 0.7;
     font-weight: 600;
     letter-spacing: var(--letter-wide);
-    font-size: clamp(0.75rem, 1.1rem, 1.1rem);
+    font-size: var(--clamp-lg);
     color: var(--off-white);
     cursor: pointer;
 }

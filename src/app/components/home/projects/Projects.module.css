@@ -161,7 +161,8 @@
     
     box-shadow: 
         0 10px 10px rgba(0, 31, 117, 0.4),
-        0 0 10px var(--transparent-cyan);
+        0 0 10px var(--transparent-cyan),
+        0 0 15px var(--transparent-cyan);
     border-color: var(--neon-cyan);
     overflow: visible;
 }
@@ -169,7 +170,7 @@
 .projectTitle {
     /* Now inherits the same padding constraints as the image above it */
     font-family: var(--font-heading);
-    font-size: clamp(1.2rem, 2rem, 2rem);
+    font-size: var(--clamp-xl);
     font-weight: var(--font-bold);
     color: var(--medium-blue);
     margin-bottom: 0.8rem;
@@ -178,7 +179,7 @@
 
 .projectDescription {
     font-family: var(--font-paragraph);
-    font-size: var(--font-medium);
+    font-size: var(--clamp-base);
     line-height: var(--line-height-normal);
     color: var(--medium-blue);
     margin-bottom: 1.5rem;
@@ -194,9 +195,10 @@
     align-items: flex-start;
     margin-bottom: 0.5rem;
     font-family: var(--font-paragraph);
-    font-size: var(--font-medium);
+    font-size: var(--clamp-base);
     line-height: var(--line-height-normal);
     color: var(--medium-blue);
+    font-weight: 600;
     opacity: 0.9;
 }
 
@@ -225,7 +227,7 @@
     padding: 0.3rem 0.8rem;
     border-radius: 20px;
     font-family: var(--font-subheading);
-    font-size: 0.8rem;
+    font-size: var(--clamp-xs);
     font-weight: var(--font-medium);
     border: 1px solid var(--medium-blue);
     transition: all 0.2s ease;
@@ -250,7 +252,7 @@
     color: var(--medium-blue);
     text-decoration: none;
     font-family: var(--font-subheading);
-    font-size: 0.9rem;
+    font-size: var(--clamp-sm);
     font-weight: var(--font-medium);
     border: 3px solid var(--medium-blue);
     border-radius: 5px;
@@ -264,6 +266,56 @@
     color: var(--off-white);
     box-shadow: 0 0 15px var(--transparent-cyan);
     transform: translateY(-2px);
+}
+
+/* GitHub Section */
+.githubSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-md) 0;
+}
+
+.githubButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center; 
+    gap: 1rem;             
+    padding: 0.8rem 1.5rem;
+    margin-top: 2rem;
+    background: transparent;
+    color: var(--medium-blue);
+    text-decoration: none;
+    font-family: var(--font-subheading);
+    font-size: var(--clamp-base);
+    font-weight: var(--font-medium);
+    border: 3px solid var(--medium-blue);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    
+    min-width: max-content; 
+}
+
+.githubButton:hover {
+    background: var(--medium-blue);
+    color: var(--off-white);
+    box-shadow: 0 0 15px var(--transparent-cyan);
+    transform: translateY(-2px);
+}
+
+.githubIcon {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.githubButton:hover .githubIcon {
+    transform: rotate(360deg);
 }
 
 /* Responsive Design */

@@ -19,7 +19,7 @@
     font-weight: 300;
 }
 .h3 {
-    font-size: var(--custom-size, 1.4rem);
+    font-size: var(--custom-size, 1.6rem);
     line-height: 1.1;
     font-weight: 500;
 }
@@ -77,6 +77,11 @@
 .baseHeader::after {
     content: "_";
     animation: hxafter var(--glitched-duration, 0.9s) linear infinite;
+    animation-play-state: running;
+}
+
+.noBlinking::after {
+    content: none;
 }
 
 .h3::after, .h4::after {

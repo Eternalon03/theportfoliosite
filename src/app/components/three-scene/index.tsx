@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import * as THREE from "three";
+import { useState, useEffect, useRef } from "react";import * as THREE from "three";
 import { ThreeSceneConfig, MousePosition, SceneObjects } from "./types";
 
 const defaultConfig: Required<ThreeSceneConfig> = {
@@ -11,10 +10,31 @@ const defaultConfig: Required<ThreeSceneConfig> = {
     cameraZ: 5,
 };
 
+const isWebGLAvailable = () => {
+    try {
+        const canvas = document.createElement("canvas");
+        return !!(
+            window.WebGLRenderingContext &&
+            (canvas.getContext("webgl") || canvas.getContext("experimental-webgl"))
+        );
+    } catch (e) {
+        return false;
+    }
+};
+
+/*
+Animation Frame: Properly cancelled
+Event Listeners: Both resize and mousemove removed
+DOM Elements: Canvas element cleanly removed
+Three.js Objects: All geometries, materials, and scene objects disposed
+WebGL Context: Forcefully cleared
+*/
+
 export const useThreeScene = (
     containerRef: React.RefObject<HTMLDivElement | null>,
     config: ThreeSceneConfig = {}
 ) => {
+    const [isSupported, setIsSupported] = useState(true); // Track support state
     const configRef = useRef({ ...defaultConfig, ...config });
     const sceneObjectsRef = useRef<SceneObjects | null>(null);
     const mousePositionRef = useRef<MousePosition>({ x: 0, y: 0 });
@@ -173,24 +193,42 @@ export const useThreeScene = (
         const sceneObjects = sceneObjectsRef.current;
         if (!sceneObjects) return;
 
-        const { renderer, sphereGeometry, particleMaterial, lineMaterial } = sceneObjects;
+        const { renderer, sphereGeometry, particleSystem, particleMaterial, lineMaterial } = sceneObjects;
 
+        // Cancel animation frame
         if (animationFrameRef.current) {
             cancelAnimationFrame(animationFrameRef.current);
         }
 
+        // Remove event listeners
         window.removeEventListener("resize", handleResize);
         window.removeEventListener("mousemove", handleMouseMove);
 
+        // Remove canvas from DOM
         if (containerRef.current && renderer.domElement) {
             containerRef.current.removeChild(renderer.domElement);
         }
 
-        // Dispose of Three.js objects
-        renderer.dispose();
         sphereGeometry.dispose();
+        particleSystem.geometry.dispose();
+
         particleMaterial.dispose();
         lineMaterial.dispose();
+
+        sceneObjects.scene.traverse((object) => {
+            if (object instanceof THREE.Mesh || object instanceof THREE.Points) {
+                object.geometry?.dispose();
+                if (Array.isArray(object.material)) {
+                    object.material.forEach(material => material.dispose());
+                } else {
+                    object.material?.dispose();
+                }
+            }
+        });
+
+        // Force WebGL context loss and dispose renderer
+        renderer.dispose();
+        renderer.forceContextLoss();
 
         sceneObjectsRef.current = null;
     };
@@ -199,13 +237,15 @@ export const useThreeScene = (
         const container = containerRef.current;
         if (!container) return;
 
-        // Initialize scene
+        if (!isWebGLAvailable()) {
+            setIsSupported(false);
+            return;
+        }
+
         initializeScene(container);
 
-        // Start animation
         animate();
 
-        // Add event listeners
         window.addEventListener("resize", handleResize);
         window.addEventListener("mousemove", handleMouseMove);
 
@@ -215,6 +255,7 @@ export const useThreeScene = (
 
     return {
         sceneObjects: sceneObjectsRef.current,
+        isSupported,
         cleanup,
     };
 };
@@ -223,12 +264,17 @@ export * from './types';
 
 const ThreeScene = () => {
     const mountRef = useRef<HTMLDivElement | null>(null);
-    useThreeScene(mountRef);
+    const { isSupported } = useThreeScene(mountRef);
 
     return (
         <section className="relative w-full flex items-center justify-center py-4">
-            {/* Three.js Canvas Container */}
-            <div id="canvas-container" ref={mountRef}></div>
+            {isSupported ? (
+                /* Three.js Canvas Container */
+                <div id="canvas-container" ref={mountRef}></div>
+            ) : (
+                /* Fallback UI */
+                <div id="canvas-container"></div>
+            )}
         </section>
     );
 };

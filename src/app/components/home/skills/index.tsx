@@ -99,7 +99,8 @@ const Skills = () => {
             </div>
 
             <div className={styles.tabHeaders}>
-                {["mobile", "web", "game", "ml"].map((tab) => (
+                {/* add ml back below will bring the string back*/}
+                {["mobile", "web", "game"].map((tab) => (
                     <button
                         key={tab}
                         className={`${styles.tabButton} ${activeTab === tab ? styles.activeTab : ""}`}
@@ -123,7 +124,7 @@ const Skills = () => {
                             <div>
                                 {Object.entries(groupedSkills).map(([type, skills]) => (
                                     <div key={type} className={styles.skillGroup}>
-                                        <FutureHeader level={3} text={type.replace("_", " ")} color="var(--off-white)"/>
+                                        <FutureHeader level={3} text={type.replace("_", " ")} color="var(--off-white)" blinking={false}/>
                                         <div className={styles.skillItems}>
                                             {skills.map((skill, i) => (
                                                 <div key={i} className={styles.individualSkill}>

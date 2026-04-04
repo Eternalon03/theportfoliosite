@@ -151,16 +151,16 @@
     font-family: var(--font-heading), monospace;
     letter-spacing: var(--letter-wide);
     font-weight: 600;
-    font-size: clamp(1.0rem, 1.2rem, 1.8rem);
+    font-size: var(--clamp-lg);
     color: var(--off-white);
     text-transform: uppercase;
     text-shadow: 0 0 10px var(--transparent-cyan); /* Adds emission */
 }
 
 .timelineCompany {
-    font-family: 'Share Tech Mono', monospace;
+    font-family: var(--font-subheading);
     color: #ddf3ff;
-    font-size: 1.1rem;
+    font-size: var(--clamp-md);
     font-weight: bold;
     margin-bottom: 1.5rem;
     letter-spacing: 1px;
@@ -193,7 +193,7 @@
     gap: 0.8rem;
     color: var(--bright-white);
     font-family: var(--font-paragraph);
-    font-size: 1.1rem;
+    font-size: var(--clamp-base);
     letter-spacing: 0.5px;
     line-height: 1.4;
     margin-bottom: 1.2rem;
@@ -217,7 +217,7 @@
     font-family: var(--font-subheading);
     font-weight: 500;
     color: #6dddff;
-    font-size: 0.9rem;
+    font-size: var(--clamp-sm);
     opacity: 0.8;
 }
 
@@ -228,7 +228,7 @@
 .categoryTitle {
     font-family: var(--font-subheading);
     font-weight: 700;
-    font-size: clamp(1.0rem, 1.6rem, 1.6rem);
+    font-size: var(--clamp-lg);
     color: var(--neon-cyan);
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -291,4 +291,41 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+    .timeline {
+        padding-left: 0;
+    }
+    
+    .timeline::before {
+        display: none; /* Hide glowing spine */
+    }
+    
+    .timelineItem {
+        padding-left: 0;
+        padding-bottom: 2rem;
+    }
+    
+    .timelineItem::after {
+        display: none; /* Hide connector line */
+    }
+    
+    .timelineMarker {
+        display: none; /* Hide diamond marker */
+    }
+    
+    .timelineContent {
+        width: 100%; /* Take full container width */
+        margin: 0 auto; /* Center the card */
+        max-width: 100%;
+    }
+    
+    .companyLogo {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin: 0 auto 1rem auto;
+    }
 }

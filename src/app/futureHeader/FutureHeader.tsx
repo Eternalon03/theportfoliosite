@@ -8,6 +8,7 @@ interface FutureHeaderProps {
     isGlitched?: boolean;
     color?: string;
     size?: string;
+    blinking?: boolean;
 }
 
 const FutureHeader = ({ 
@@ -15,12 +16,13 @@ const FutureHeader = ({
     text, 
     isGlitched = false, 
     color, 
-    size 
+    size,
+    blinking = true 
 }: FutureHeaderProps) => {
     
     const Tag = `h${level}` as "h1" | "h2" | "h3" | "h4";
     const levelClass = styles[`h${level}`];
-    const classNames = `${styles.baseHeader} ${levelClass} ${isGlitched ? styles.glitched : ""}`;
+    const classNames = `${styles.baseHeader} ${levelClass} ${isGlitched ? styles.glitched : ""} ${blinking ? "" : styles.noBlinking}`;
 
     // Fix: Only add the keys to the style object if the prop was actually passed
     const customStyles: React.CSSProperties = {};
@@ -30,6 +32,9 @@ const FutureHeader = ({
     }
     if (size) {
         (customStyles as any)['--custom-size'] = size;
+    }
+    if (blinking !== undefined) {
+        (customStyles as any)['--blinking-enabled'] = blinking ? '1' : '0';
     }
 
     return (
