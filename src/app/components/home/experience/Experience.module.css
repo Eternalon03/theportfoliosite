@@ -293,14 +293,13 @@
     object-fit: contain;
 }
 
-/* Responsive Design */
 @media (max-width: 767px) {
     .timeline {
         padding-left: 0;
     }
     
     .timeline::before {
-        display: none; /* Hide glowing spine */
+        display: none;
     }
     
     .timelineItem {
@@ -309,17 +308,18 @@
     }
     
     .timelineItem::after {
-        display: none; /* Hide connector line */
+        display: none; 
     }
     
     .timelineMarker {
-        display: none; /* Hide diamond marker */
+        display: none; 
     }
     
     .timelineContent {
-        width: 100%; /* Take full container width */
-        margin: 0 auto; /* Center the card */
+        width: 100%; 
+        margin: 0 auto;
         max-width: 100%;
+        padding: var(--padding-small);
     }
     
     .companyLogo {
