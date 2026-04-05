@@ -319,7 +319,6 @@
         width: 100%; 
         margin: 0 auto;
         max-width: 100%;
-        padding: var(--padding-small);
     }
     
     .companyLogo {
@@ -327,5 +326,12 @@
         top: auto;
         right: auto;
         margin: 0 auto 1rem auto;
+    }
+
+    .achievementsWrapper {
+        margin-left: -2rem;
+        margin-right: -2rem;
+        transition: max-height 0.5s cubic-bezier(0, 1, 0, 1), opacity 0.4s ease, margin 0.3s ease;
+        overflow: hidden;
     }
 }

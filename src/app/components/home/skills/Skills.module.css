@@ -6,7 +6,7 @@
 }
 
 /* cutout only viewable when the screen is big enough */
-@media (min-width: 768px) {
+@media (min-width: 900px) {
     .skillsContainer {
         /* Master shape for the card to ensure border and background match perfectly */
         --card-shape: polygon(
@@ -171,7 +171,7 @@
 
 .tabContent {
     height: 100%;
-    width: 70%;
+    width: 100%;
     padding-top: 1.5rem;
     padding-bottom: 3.5vw;
 }
