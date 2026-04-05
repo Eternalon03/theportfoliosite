@@ -101,9 +101,6 @@
 
     /* Simple shadow */
     box-shadow: 0 4px 15px rgba(0, 25, 94, 0.3);
-
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 .timelineContent::after {
@@ -114,26 +111,19 @@
     width: 100%;
     height: 100%;
     
-    /* The Texture: You can use a URL or a repeating pattern */
-    background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+    /* background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); */
     
-    /* Blending: This is the magic part */
     mix-blend-mode: multiply; 
     
-    /* Ensure the texture doesn't block clicks or text selection */
     pointer-events: none;
     
-    /* Match the parent's border radius if you have one */
     border-radius: inherit;
     
-    /* If you want the texture to feel "behind" the text but "on" the card */
     z-index: 1;
 }
 
-/* Simple Hover State */
 .timelineContent:hover {
     border-color: var(--neon-cyan);
-    /* Lifts up and scales slightly */
     transform: translateY(-8px) scale(1.02);
     box-shadow: 
         0 8px 25px rgba(0, 4, 255, 0.2),
@@ -178,6 +168,7 @@
     flex-direction: column;
     gap: 0.8rem;
     padding: 2rem;
+    padding-bottom: 0rem;
     background: var(--recessed);
     border-top: 1px solid rgba(0,0,0,0.3);
     border-left: 1px solid rgba(0,0,0,0.3);
@@ -307,10 +298,14 @@
         padding-bottom: 2rem;
     }
     
-    .timelineItem::after {
+    .timelineItem:hover::after {
         display: none; 
     }
-    
+
+    .timelineContent:hover {
+        transform: translateY(-8px) scale(1);
+    }
+
     .timelineMarker {
         display: none; 
     }
@@ -333,5 +328,10 @@
         margin-right: -2rem;
         transition: max-height 0.5s cubic-bezier(0, 1, 0, 1), opacity 0.4s ease, margin 0.3s ease;
         overflow: hidden;
+    }
+
+    .achievementItem {
+        margin-right: -1.5rem;
+        margin-left: -1.5rem;
     }
 }

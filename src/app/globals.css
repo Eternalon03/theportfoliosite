@@ -10,6 +10,10 @@
     font-display: swap;
 }
 
+section {
+  scroll-margin-top: 6rem; /* Adjust this value to your liking */
+}
+
 *, *::before, *::after {
     margin: 0;
     padding: 0;

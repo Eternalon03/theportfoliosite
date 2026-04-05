@@ -11,6 +11,7 @@ const page = () => {
   return (
     <main>
       <ThreeScene/>
+      <Divider/>
       <section id="hero">
         <HeroSection/>
       </section>
