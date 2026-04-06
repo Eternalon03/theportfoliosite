@@ -423,11 +423,11 @@
 /* Mobile Layout */
 @media (max-width: 568px) {
     .card-container {
-        width: 100vw;
-        height: auto;
-        aspect-ratio: 1075/1296;
-        background: none; 
-        margin: 1rem auto;
+        width: 95vw; /* Leave a tiny bit of room for side margins */
+        aspect-ratio: 1075 / 1296;
+        height: auto; /* Let aspect-ratio calculate the height */
+        padding: 4cqi; /* Scale padding with the box */
+        overflow: hidden; /* Safety net */
     }
 
     /* MUST be to the front face instead, or you get a weird double image */
@@ -456,7 +456,7 @@
         justify-content: flex-start;
 		padding: 0;
         margin-bottom: 1cqi;
-        margin-top: 7cqi;
+        margin-top: 5cqi;
     }
     
     .card-right {
@@ -473,14 +473,16 @@
     }
     
     .card-title {
-        font-size: clamp(1.5rem, 4vw, 2.5rem);
-        margin-bottom: 2cqi;
+        /* Use cqi for font size so it's always a % of the card width */
+        font-size: 8cqi !important; 
+        margin-bottom: 3cqi;
+        line-height: 1;
     }
     
     .card-subtitle {
-        font-size: clamp(0.8rem, 2.5vw, 1.2rem);
-        line-height: 1.4;
-        margin-bottom: 2cqi;
+        font-size: 3.2cqi !important;
+        line-height: 1.2;
+        margin-bottom: 3cqi;
     }
     
     .card-content {
@@ -495,8 +497,8 @@
     }
     
     .stat-value {
-        font-size: clamp(0.9rem, 3vw, 1.3rem);
-        text-align: center;
+        font-size: 3.4cqi !important;
+        line-height: 1.1;
     }
     
     .vector-container {
@@ -521,9 +523,10 @@
     }
     
     .profile-wrapper {
-        width: 50cqi;
-        height: 50cqi;
-        margin: 0 auto 2cqi auto; 
+        width: 45cqi;
+        height: 45cqi;
+        margin-top: 2cqi;
+        margin-bottom: 4cqi;
         display: flex;
         justify-content: center;
         align-items: center;

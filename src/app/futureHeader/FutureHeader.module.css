@@ -14,7 +14,7 @@
     font-weight: 200;
 }
 .h2 {
-    font-size: var(--custom-size, calc(0.5vw + 1.4rem));
+    font-size: var(--custom-size, calc(0.5vw + 1.7rem));
     line-height: 1.1;
     font-weight: 300;
 }

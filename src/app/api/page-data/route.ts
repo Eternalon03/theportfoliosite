@@ -92,6 +92,7 @@ const experienceData = [
         role: "Tools Engineer",
         location: "Haven Studios (Playstation Studio), Montreal",
         date: "May 2024 - August 2024",
+        internship: "Internship",
         bulletPoints: [
             ["Core Pipeline & Automation",
                 ["Architected a data-driven Multipart Export node **(Blender Python API, Unreal Blueprints) to bulk-export static meshes** with linked metadata. Consolidated 3 separate workflows into a single automated pipeline, reducing artist **export setup time from 10 minutes to seconds.**",

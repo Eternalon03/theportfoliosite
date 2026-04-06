@@ -14,11 +14,11 @@ const AboutMe = () => {
                     <FutureHeader level={2} text="About Me" color="var(--medium-blue)"/>
                     
                     <p className={styles.aboutDescription}>
-                        Hi, I'm Nicole! I'm a Toronto-based Software Engineer currently specializing in <span className={styles.highlight}>mobile development at Capital One</span>. I've worn many different hats over the years, building a versatile skillset that allows me to bridge gaps between roles.
+                        Hi, I'm Nicole! I'm a Toronto-based Software Engineer currently specializing in <span className={styles.highlight}>mobile development at Capital One</span>. As a Waterloo CS grad, I've worn many different hats over the span of my 6 internships, building a versatile skillset that allows me to bridge gaps between roles.
                     </p>
                     
                     <p className={styles.aboutDescription}>
-                        I like being involved in planning and events around my communities, whether that be my work, my city, or my art. Feel free to contact me if you want to plan something!
+                        I like being involved in organizing events in my communities, whether that be my work, my city, or my art. Feel free to contact me if you want to plan something!
                     </p>
 
                     {/*Added a wrapper div to push it to the center */}
