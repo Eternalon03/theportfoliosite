@@ -1,6 +1,5 @@
 .certificationsHeader {
     margin-bottom: 2rem;
-    text-align: center;
 }
 
 .certificationsGrid {
@@ -128,4 +127,26 @@
         align-items: flex-start;
         gap: 0.25rem;
     }
+}
+
+.externalLink {
+    color: #3ad1ff; /* Your theme's blue */
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    margin-left: 8px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.externalLink:hover {
+    color: #00f7ff; /* Changes color on hover for feedback */
+    text-shadow: 0 0 10px rgba(24, 255, 224, 0.7);
+    text-decoration-color: #00f7ff;
+}
+
+/* Optional: Add a little arrow icon after the link */
+.externalLink::after {
+    content: " ↗";
+    font-size: 0.8rem;
 }

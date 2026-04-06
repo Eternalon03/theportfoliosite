@@ -1,27 +1,32 @@
+"use client";
 import styles from "./Certifications.module.css";
 import FutureHeader from "@/app/futureHeader/FutureHeader";
+import { useEffect, useState } from "react";
+
+interface Certification {
+    name: string;
+    issuer: string;
+    date: string;
+    credentialId: string;
+    image: string;
+}
 
 const Certifications = () => {
-    const certifications = [
-        {
-            name: "AWS Certified Cloud Practitioner",
-            issuer: "Amazon Web Services",
-            date: "2023",
-            credentialId: "AWS-CLF-C01"
-        },
-        {
-            name: "RCM ",
-            issuer: "Royal Conservatory of Music",
-            date: "",
-            credentialId: ""
-        },
-        {
-            name: "Senior Black Belt",
-            issuer: "East West Karate",
-            date: "",
-            credentialId: ""
-        }
-    ];
+    const [certifications, setCertifications] = useState<Certification[]>([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('/api/page-data');
+                const data = await response.json();
+                setCertifications(data.certificationsData || []);
+            } catch (error) {
+                console.error('Error fetching certifications:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     return (
         <section id="certifications" className="section">
@@ -33,9 +38,7 @@ const Certifications = () => {
                 <div className={styles.certificationsGrid}>
                     {certifications.map((cert, index) => (
                         <div key={index} className={styles.certificationCard}>
-                            <div className={styles.certificationIcon}>
-                                🏆
-                            </div>
+                            <img src={cert.image} alt={cert.name} className={styles.certificationIcon} />
                             <div className={styles.certificationContent}>
                                 <h3 className={styles.certificationName}>{cert.name}</h3>
                                 <div className={styles.certificationDetails}>
@@ -43,7 +46,19 @@ const Certifications = () => {
                                     <span className={styles.certificationDate}>{cert.date}</span>
                                 </div>
                                 <div className={styles.certificationId}>
-                                    ID: {cert.credentialId}
+                                    {cert.credentialId && (
+                                        <>
+                                            {cert.credentialId} —  
+                                            <a 
+                                                href="https://www.credly.com/badges/753623e8-6bbf-4d13-bb93-ef0c5366dcbc/public_url" 
+                                                target="_blank" 
+                                                rel="noopener noreferrer"
+                                                className={styles.externalLink}
+                                            >
+                                                VERIFY_CREDENTIAL
+                                            </a>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </div>

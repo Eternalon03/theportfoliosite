@@ -55,14 +55,13 @@
 
 .projectsGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: 2fr 2fr;
     gap: 2rem;
     padding: 0 var(--padding-small);
     
-    /* ADD THESE */
     position: relative; 
-    z-index: 10; /* Anything higher than the -1 of the background */
-    overflow: visible; /* Explicitly set this */
+    z-index: 10; 
+    overflow: visible;
 }
 
 .projectCard {

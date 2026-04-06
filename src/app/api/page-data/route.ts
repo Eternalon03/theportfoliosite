@@ -113,7 +113,47 @@ const experienceData = [
                 ],
             ],
         ]
-    }
+    },
+    {
+        logo: "/images/experience/stratumai-logo.jpg",
+        role: "Machine Learning Engineer",
+        location: "StratumAI, Remote",
+        date: "September 2023 - December 2023",
+        internship: "Internship",
+        bulletPoints: [
+            ["",
+                [
+                    "Optimized ML data preprocessing and visualization pipelines by resolving complex array masking logic.",
+                    "Developed a reproducible research framework using Jupyter Notebooks and Sphinx, standardizing the visualization of high-dimensional datasets and model performance metrics for the broader engineering team.",
+                    "Independently built a robust and highly customizable notification bot for when scripts completed, using the Slack API and Bolt in Object-Oriented Python, with a 100% developer adoption rate.",
+                    "Led a data mining final project using k-means clustering and dimensionality reduction techniques for data visualization. Analyzed trends and their uses in a comprehensive report presented to my team.",
+                ]
+            ],
+        ]
+    },
+    {
+        logo: "/images/experience/ford-logo.jpg",
+        role: "Full Stack Software Engineer",
+        location: "Ford Motor Company, Remote",
+        date: "May 2022 - August 2022",
+        internship: "Internship",
+        bulletPoints: [
+            ["Feature Engineering",
+                [
+                    "Integrated a site-wide Elasticsearch engine, implementing custom suggesters and optimized results-page logic to enhance query relevance.",
+                    "Developed and deployed **10+ high-visibility features** for the official Ford Pro web platform using a React and Java (Spring Boot) stack.",
+                    "Engineered an interactive 'Locate a Dealer' service via the HereMaps API, utilizing real-time geolocation and multi-parameter filtering to connect users with specialized service centers.",
+                ]
+            ],
+            ["Platform Engineering & DevOps",
+                [
+                    "Assisted the migration of enterprise CI/CD pipelines from Harness to Tekton, modernizing the deployment lifecycle for Ford Pro services.",
+                    "Streamlined developer workflows by containerizing legacy services and ensuring high availability across automated staging environments.",
+                    "Designed and implemented an automated billing task during a company-wide hackathon, utilizing a React/Java architecture to schedule and dispatch invoices."
+                ],
+            ],
+        ]
+    },
 ]
 
 const educationData = [
@@ -149,24 +189,60 @@ const projectOverview = {
             overlayImg: "/images/projects/cointrail_overlay.png",
             buttonOne: ["Video Demo", "https://youtu.be/dfk_-6fy-4o"],    
             buttonTwo: ["GitHub", "https://github.com/Eternalon03/Cointrail-Expense-Tracker"],
-            description: "A full-stack financial platform using Kotlin/Jetpack Compose and FastAPI, integrating a global community deal-hunting module with a real-time voting system amd an XP-based leveling system with a virtual pet that reacts dynamically to the user's financial goal progress" ,
+            description: "A full-stack financial platform using Kotlin/Jetpack Compose and FastAPI, integrating a global community deal-hunting module with a real-time voting system and an XP-based leveling system with a virtual pet that reacts dynamically to the user's financial goal progress" ,
             bulletpoints: [
                 "High-scale application on a Kubernetes (K8S) cluster with Horizontal Pod Autoscaling, created with Kotlin/Jetpack Compose and Python FastAPI",
                 "Event-Driven notification system utilizing Firebase Cloud Messaging, decoupling backend event triggers from the client",
                 "Created with a 6-person team, documenting functional and non-functional requirements, and detailed system architecture",
             ],
             skills: ["Kotlin", "Jetpack Compose", "Python", "FastAPI", "PostgreSQL", "Kubernetes", "Docker", "GCP Firebase"],
-        }
-        
+        },
+        { 
+            name: "“Fish For Thought”: Hack the North 2025",
+            image: "/images/projects/fishforthought.png",
+            overlayImg: "/images/projects/fishforthought_overlay.png",
+            buttonOne: ["Video Demo", "https://devpost.com/software/fish-for-thought"],    
+            buttonTwo: ["GitHub", "https://github.com/Eternalon03/Hack-The-North-2025"],
+            description: "Fish for Thought aims to help users reflect and log what they did and felt throughout their day on the app. People love custom experiences so, mildly inspired by the popularity of daily horoscopes, Fish For Thought gives users a custom breakdown of the emotions and things they did that day through a cute journaling interface. In this game you write down a journal entry, our AI analyzes the tone, and then you're awarded a special fish that represents that emotion.",
+            bulletpoints: [
+                "",
+            ],
+            skills: ["Python", "Godot", "GDScript", "Kubernetes", "Docker", "GCP Firebase"],
+        }  
     ]
 };
 
+
+const certificationsData = [
+    {
+        name: "Certified AWS Cloud Practitioner",
+        issuer: "Amazon Web Services",
+        date: "2026",
+        credentialId: "ID: AWS-CLF-C01",
+        image: "/images/certifications/aws.jpeg"
+    },
+    {
+        name: "Piano & Theory Music Certificate Level 8",
+        issuer: "Royal Conservatory of Music",
+        date: "",
+        credentialId: "",
+        image: "/images/certifications/ewk.png"
+    },
+    {
+        name: "Senior Black Belt",
+        issuer: "East West Karate",
+        date: "",
+        credentialId: "",
+        image: "/images/certifications/rcm.jpg"
+    }
+];
 
 export const GET = async () => {
     return NextResponse.json({
         skillsData,
         experienceData,
         educationData,
-        projectOverview
+        projectOverview,
+        certificationsData
     });
 };
