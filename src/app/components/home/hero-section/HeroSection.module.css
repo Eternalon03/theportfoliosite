@@ -1,13 +1,3 @@
-/* really specific and on its own because its for some weird header resizing */
-@media (max-width: 778px) {
-	.card-container {
-		margin-top: 1.8rem;
-	}
-	.card {
-		margin-top: 1.8rem;
-	}
-}
-
 .card-container {
     position: relative;
     width: 90vw; 
@@ -433,7 +423,7 @@
 /* Mobile Layout */
 @media (max-width: 568px) {
     .card-container {
-        width: 95vw;
+        width: 100vw;
         height: auto;
         aspect-ratio: 1075/1296;
         background: none; 
@@ -464,8 +454,9 @@
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        margin-bottom: 0;
 		padding: 0;
+        margin-bottom: 1cqi;
+        margin-top: 7cqi;
     }
     
     .card-right {
@@ -478,16 +469,18 @@
     
     .card-header {
         text-align: center;
-        margin-bottom: 1cqi;
+        margin-bottom: 2cqi;
     }
     
     .card-title {
         font-size: clamp(1.5rem, 4vw, 2.5rem);
+        margin-bottom: 2cqi;
     }
     
     .card-subtitle {
         font-size: clamp(0.8rem, 2.5vw, 1.2rem);
         line-height: 1.4;
+        margin-bottom: 2cqi;
     }
     
     .card-content {
@@ -507,7 +500,7 @@
     }
     
     .vector-container {
-        display: none; /* Hide arrows on mobile */
+        display: none;
     }
     
     .social-links-floating {
@@ -530,7 +523,7 @@
     .profile-wrapper {
         width: 50cqi;
         height: 50cqi;
-        margin: 0 auto 2cqi auto; /* Add bottom margin */
+        margin: 0 auto 2cqi auto; 
         display: flex;
         justify-content: center;
         align-items: center;
@@ -538,10 +531,10 @@
     }
     
     .line-container {
-        display: none; /* Hide accent lines on mobile */
+        display: none;
     }
     
     .ghost-frame {
-        display: none; /* Hide ghost frame on mobile */
+        display: none;
     }
 }

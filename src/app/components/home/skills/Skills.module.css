@@ -5,33 +5,6 @@
     padding: 2rem 0;
 }
 
-/* cutout only viewable when the screen is big enough */
-@media (min-width: 900px) {
-    .skillsContainer {
-        /* Master shape for the card to ensure border and background match perfectly */
-        --card-shape: polygon(
-            0 0,                          /* Top Left */
-            0 100%,                       /* Bottom Left */
-            25% 100%,                     /* Start of bottom notch */
-            30% 90%,                      /* Notch up */
-            50% 90%,                      /* Notch flat */
-            55% 100%,                     /* Notch down */
-            100% 100%,                    /* Bottom Right */
-            100% 40px,                    /* Right edge, 40px from top */
-            /* Point 1: Start of the 'shelf' */
-            calc(100% - min(25%, 500px)) 40px,      
-            /* Point 2: The tip where it meets the top edge */
-            calc(100% - min(30%, 550px)) 0          
-        );
-    }
-    .tabContent {
-        height: 100%;
-        width: 100%;
-        padding-top: 1.5rem;
-        padding-bottom: 3.5vw;
-    }
-}
-
 .skillsContainer {
     display: grid; 
     grid-template-columns: 1fr;
@@ -209,7 +182,6 @@
     letter-spacing: var(--letter-wide);
     font-size: var(--clamp-lg);
     color: var(--off-white);
-    cursor: pointer;
 }
 
 /* ---- */
@@ -244,4 +216,37 @@
     background-repeat: repeat-x;
 
     animation: dashMove 10s linear infinite;
+}
+
+/* cutout only viewable when the screen is big enough */
+@media (min-width: 900px) {
+    .skillsContainer {
+        /* Master shape for the card to ensure border and background match perfectly */
+        --card-shape: polygon(
+            0 0,                          /* Top Left */
+            0 100%,                       /* Bottom Left */
+            25% 100%,                     /* Start of bottom notch */
+            30% 90%,                      /* Notch up */
+            50% 90%,                      /* Notch flat */
+            55% 100%,                     /* Notch down */
+            100% 100%,                    /* Bottom Right */
+            100% 40px,                    /* Right edge, 40px from top */
+            /* Point 1: Start of the 'shelf' */
+            calc(100% - min(25%, 500px)) 40px,      
+            /* Point 2: The tip where it meets the top edge */
+            calc(100% - min(30%, 550px)) 0          
+        );
+    }
+    .tabContent {
+        height: 100%;
+        width: 100%;
+        padding-top: 1.5rem;
+        padding-bottom: 3.5vw;
+    }
+}
+
+@media (max-width: 568px) {
+    .individualSkill {
+        font-size: 1rem;
+    }
 }
