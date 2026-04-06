@@ -112,3 +112,36 @@
 .linkedin .icon:hover, .linkedin .icon:hover ~ .tooltip, .linkedin .icon:hover ~ .tooltip::before { background: #0a66c2; }
 .itchio .icon:hover, .itchio .icon:hover ~ .tooltip, .itchio .icon:hover ~ .tooltip::before { background: #fe294e; }
 .github .icon:hover, .github .icon:hover ~ .tooltip, .github .icon:hover ~ .tooltip::before { background: #333; }
+
+@media (max-width: 568px) {
+    .wrapper {
+        width: 60cqi;
+        height: 14cqi;
+        padding: 0.2cqi;
+        margin-left: auto;
+        margin-right: auto;
+        transform: none; /* Remove floating transform on mobile */
+        will-change: auto; /* Disable will-change on mobile */
+        position: relative; /* Ensure it stays in document flow */
+        z-index: auto; /* Remove high z-index on mobile */
+    }
+    
+    .wrapper::before {
+        backdrop-filter: none; /* Remove blur on mobile for performance */
+        -webkit-backdrop-filter: none;
+        background: rgba(37, 137, 219, 0.6); /* Solid background instead */
+    }
+
+    .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 12cqi; 
+        width: 12cqi;
+        padding: 0.3cqi;
+        border-radius: 50%;
+        font-size: 8cqi;
+        cursor: pointer;
+        transform: none; /* Remove individual icon transforms */
+    }
+}

@@ -71,8 +71,8 @@
     border-radius: 2px;
 }
 
-@media (min-width: 768px) {
-    /* .aboutDescription {
-        font-size: 1.25rem; 
-    } */
+@media (max-width: 568px) {
+    .aboutDescription {
+        font-size: 0.8rem; 
+    }
 }

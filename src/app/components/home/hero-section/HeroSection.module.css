@@ -1,5 +1,4 @@
-/* Font imports moved to globals.css */
-
+/* really specific and on its own because its for some weird header resizing */
 @media (max-width: 778px) {
 	.card-container {
 		margin-top: 1.8rem;
@@ -247,14 +246,14 @@
 
 .vector-container {
 	position: absolute;
-    top: 37cqi;   
+    top: 36cqi;   
     right: 5cqi;
     z-index: 10;
     pointer-events: none;
 }
 
 .arrows-vector {
-    width: 18cqi; 
+    width: calc(20vw - 50px);
     aspect-ratio: 1 / 1; 
     display: inline-block;
     background-color: var(--off-white); 
@@ -429,4 +428,120 @@
 		rgba(0, 195, 255, 0) 100%
 	);
 	animation: var(--animate-loading);
+}
+
+/* Mobile Layout */
+@media (max-width: 568px) {
+    .card-container {
+        width: 95vw;
+        height: auto;
+        aspect-ratio: 1075/1296;
+        background: none; 
+        margin: 1rem auto;
+    }
+
+    /* MUST be to the front face instead, or you get a weird double image */
+    .card-front {
+        background: url('/images/hero-sec/vhs_background_asset_mobile.png') no-repeat center/cover;
+    }
+    
+    .card {
+        padding: 0;
+        flex-direction: column;
+        height: 100%;
+    }
+    
+    .card-inner-layout {
+        flex-direction: column;
+        height: 100%;
+        padding: 1cqi;
+		padding-top: 0cqi;
+    }
+    
+    .card-left {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 0;
+		padding: 0;
+    }
+    
+    .card-right {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .card-header {
+        text-align: center;
+        margin-bottom: 1cqi;
+    }
+    
+    .card-title {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+    }
+    
+    .card-subtitle {
+        font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+        line-height: 1.4;
+    }
+    
+    .card-content {
+        width: 100%;
+        padding: 0;
+    }
+    
+    .card-stats {
+        flex-direction: column;
+        gap: 1cqi;
+        align-items: center;
+    }
+    
+    .stat-value {
+        font-size: clamp(0.9rem, 3vw, 1.3rem);
+        text-align: center;
+    }
+    
+    .vector-container {
+        display: none; /* Hide arrows on mobile */
+    }
+    
+    .social-links-floating {
+        position: relative;
+		width: 92%;
+        top: auto;
+        text-align: center;
+		justify-content: center;
+        transform: none;
+        margin-bottom: 4cqi;
+        order: 3; /* Place after profile and stats. Strange, haven't seen this before */
+    }
+    
+    .card-email {
+        text-align: center;
+        font-size: clamp(0.8rem, 2.5vw, 1rem);
+        order: 4; /* Place after social links */
+    }
+    
+    .profile-wrapper {
+        width: 50cqi;
+        height: 50cqi;
+        margin: 0 auto 2cqi auto; /* Add bottom margin */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        order: 1; /* Profile first */
+    }
+    
+    .line-container {
+        display: none; /* Hide accent lines on mobile */
+    }
+    
+    .ghost-frame {
+        display: none; /* Hide ghost frame on mobile */
+    }
 }
