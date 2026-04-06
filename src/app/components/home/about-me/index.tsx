@@ -14,7 +14,7 @@ const AboutMe = () => {
                     <FutureHeader level={2} text="About Me" color="var(--medium-blue)"/>
                     
                     <p className={styles.aboutDescription}>
-                        Hi, I'm Nicole! I'm a Toronto-based Software Engineer currently specializing in <span className={styles.highlight}>mobile development at Capital One</span>. As a Waterloo CS grad, I've worn many different hats over the span of my 6 internships, building a versatile skillset that allows me to bridge gaps between roles.
+                        Hi, I'm Nicole! I'm a Toronto-based Software Engineer currently specializing in <span className={styles.highlight}>mobile development at Capital One</span>. As a Waterloo Computer Science graduate, I've worn many different hats over the span of my 6 internships, building a versatile skillset that allows me to bridge gaps between roles.
                     </p>
                     
                     <p className={styles.aboutDescription}>

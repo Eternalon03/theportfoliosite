@@ -1,5 +1,6 @@
 import Divider from "./components/divider"
 import AboutMe from "./components/home/about-me"
+import Certifications from "./components/home/certifications"
 import Education from "./components/home/skills"
 import Experience from "./components/home/experience"
 import HeroSection from "./components/home/hero-section"
@@ -29,6 +30,10 @@ const page = () => {
       </section>
       <section id="projects">
         <Projects/>
+      </section>
+      <Divider/>
+      <section id="certifications">
+        <Certifications/>
       </section>
       <Divider/>
     </main>

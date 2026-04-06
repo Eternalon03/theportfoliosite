@@ -1,0 +1,131 @@
+.certificationsHeader {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.certificationsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.certificationCard {
+    background: var(--medium-blue);
+    border: 2px solid var(--neon-cyan);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.certificationCard::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.certificationCard:hover::before {
+    left: 100%;
+}
+
+.certificationCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 229, 255, 0.3);
+    border-color: var(--off-white);
+}
+
+.certificationIcon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 229, 255, 0.1);
+    border-radius: 50%;
+    border: 1px solid var(--neon-cyan);
+}
+
+.certificationContent {
+    flex: 1;
+}
+
+.certificationName {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--off-white);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.certificationDetails {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.certificationIssuer {
+    color: var(--neon-cyan);
+    font-family: var(--font-subheading);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.certificationDate {
+    color: var(--off-white);
+    font-family: var(--font-paragraph);
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.certificationId {
+    font-family: var(--font-paragraph);
+    font-size: 0.8rem;
+    color: var(--off-white);
+    opacity: 0.6;
+    font-style: italic;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .certificationsGrid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .certificationCard {
+        padding: 1rem;
+    }
+    
+    .certificationIcon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+    
+    .certificationName {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .certificationDetails {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+}
