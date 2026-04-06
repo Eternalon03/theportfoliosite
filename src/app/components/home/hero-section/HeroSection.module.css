@@ -424,9 +424,9 @@
     .card-container {
         width: 95vw; /* Leave a tiny bit of room for side margins */
         aspect-ratio: 1075 / 1296;
-        height: auto; /* Let aspect-ratio calculate the height */
-        padding: 4cqi; /* Scale padding with the box */
-        overflow: hidden; /* Safety net */
+        height: auto;
+        padding: 2cqi; /* Scale padding with the box */
+        overflow: visible;
     }
 
     /* MUST be to the front face instead, or you get a weird double image */
