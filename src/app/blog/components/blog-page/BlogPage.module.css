@@ -200,6 +200,33 @@
   line-height: 1.5;
 }
 
+.homeButtonContainer {
+  text-align: center;
+  margin: 3rem 0;
+  padding: 2rem 0;
+}
+
+.homeButton {
+  display: inline-block;
+  background: var(--neon-cyan);
+  color: var(--dark-blue);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  border: 2px solid var(--neon-cyan);
+}
+
+.homeButton:hover {
+  background: transparent;
+  color: var(--neon-cyan);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 229, 255, 0.3);
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .blogContainer {

@@ -323,6 +323,12 @@ const BlogPage = () => {
           </div>
         </div>
       </div>
+      
+      <div className={styles.homeButtonContainer}>
+        <a href="https://nicoleplaneta.com" className={styles.homeButton} target="_blank" rel="noopener noreferrer">
+          Return to Home
+        </a>
+      </div>
     </div>
   );
 };

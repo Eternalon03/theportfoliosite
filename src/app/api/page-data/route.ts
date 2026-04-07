@@ -65,16 +65,17 @@ const experienceData = [
         internship: "+ September 2024 - December 2024 (Internship)",
         bulletPoints: [
             ["Core Mobile Features & Platform Architecture",
-                ["Implemented **end-to-end frontend and network architecture** for major user flow modernizations, including multi-account linking and profile refreshes. Engineered backwards-compatible **REST API layers** in Kotlin, handling analytics, legacy constraints, and regression edge cases.",
+                ["Implemented **end-to-end frontend and network architecture** for major user flow modernizations, using **Server Driven UI principles**. Engineered backwards-compatible **REST API layers** in Kotlin and Swift, handling analytics, legacy constraints, and regression edge cases.",
                 "Resolved a critical API defect utilizing **Splunk logs** to trace cross-service payload drops, **preventing major production failures prior to launch.**",
                 "Diagnosed a vendor-side library defect causing excessive CPU usage, **authoring a technical analysis paper utilized directly by the company** to patch the vulnerability globally.",
                 "Investigated and resolved a critical **iOS platform** stability issue **affecting over 10,000 active users**. Utilized New Relic analytics to trace stack crashes including method swizzling to a legacy Swift CoreData race condition, **reducing the enterprise crash rate by 0.6%**.",
-                "Executed proactive technical debt reduction across the iOS and Android codebase, refactoring legacy Singleton anti-patterns in Kotlin, expanding cross-platform support, and creating the enterprise migration proposal for Swift 6."
+                "Executed proactive technical debt reduction across the iOS and Android codebase in UIKit and Kotlin, refactoring legacy Singleton anti-patterns, and creating the enterprise migration proposal for Swift 6."
                 ]
             ],
             ["CI/CD & Developer Experience",
                 ["Led a major **enterprise initiative** to eliminate manual regression testing, supporting the shift to a weekly release cycle. **Eliminated 85+ legacy UI tests** on a strict deadline by managing the technical coordination and established the architectural criteria across 9 distinct feature teams.",
                 "Developed and delivered a comprehensive 40+ slide technical training program for the new Weekly Release model to **35+ engineers**, detailing the new architecture and operational shifts for manual sign-offs.",
+                "Led collaboration with internal and external teams to become the first Canadian team to fully integrate an accessibility testing engine, into the existing Jenkins pipeline. Managed the related artifacts and  commands needed through various **Fastlane / Ruby scripts.**",
                 "Created an **Android crash dashboard** in New Relic to monitor and track application stability metrics, managed by feature and fragment lifecycle, **with a 100% developer adoption rate**.",
                 "Managed progressive phased rollouts to production with **feature flags**. Conducted live telemetry monitoring and weekly regression sign-offs for critical compliance and signup flows.",
                 "Overhauled the mobile engineering onboarding architecture, identifying and correcting critical gaps in local environment setups, Fastlane replication, and access provisioning. Quickly authored disaster-recovery documentation for Artifactory authentication failures, unblocking the whole team.",
@@ -82,7 +83,8 @@ const experienceData = [
             ],
             ["Quality Assurance & Accessibility (a11y) Architecture",
                 ["Served as the **primary technical lead** for a pilot enterprise accessibility review framework, **resolving 15+ compliance issues on the team alone**. Authored the standardized resolution documentation and directly mentored cross-functional developers on patching complex compliance failures.",
-                "Engineered an automated script (Python) to scrape, consolidate, and format hundreds of enterprise-wide UI/UX issues into a centralized, queryable database.",
+                    "Enhanced accessibility by implementing SwiftUI Accessibility traits, enabling full VoiceOver support and reducing all serious accessibility scan failures from 20+ to 0.",
+                    "Engineered an automated script (Python) to scrape, consolidate, and format hundreds of enterprise-wide UI/UX issues into a centralized, queryable database.",
                 ]
             ],
         ],
@@ -216,8 +218,8 @@ const projectOverview = {
             name: "Artemis Smartwatch (ESP-32): Workshop",
             image: "/images/projects/artemissmartwatch.png",
             overlayImg: "/images/projects/artemissmartwatch_overlay.png",
-            buttonOne: ["Documentation", "https://devpost.com/software/fish-for-thought"],    
-            buttonTwo: ["CircuitOS GitHub", "https://github.com/CircuitMess/micropython/tree/master"],
+            buttonOne: ["Article", "https://medium.com/@nplaneta03/i-got-to-host-a-workshop-on-programming-a-smartwatch-1a0f1c5778d0"],    
+            buttonTwo: ["GitHub", "https://github.com/Eternalon03/Artemis-Smartwatch-Example"],
             description: "Hosted an interactive hardware and software workshop at work where an (awesome!) group assembled and programmed their own smartwatches using the kits by CircuitMess. Planned the lesson and architected the missing docs for this smartwatch, ensuring everyone got hands-on experience with internal hardware components—including displays, gyroscopes, and connectivity modules—and MicroPython. Built  a few example apps and helped to run the showcase of the apps at the end.",
             bulletpoints: [
                 "Spearheaded a technical smartwatch workshop, managing end-to-end logistics from executive and HR approval to curriculum design for cross-functional engineering teams",
