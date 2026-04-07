@@ -205,10 +205,28 @@ const projectOverview = {
             buttonTwo: ["GitHub", "https://github.com/Eternalon03/Hack-The-North-2025"],
             description: "Fish for Thought aims to help users reflect and log what they did and felt throughout their day on the app. People love custom experiences so, mildly inspired by the popularity of daily horoscopes, Fish For Thought gives users a custom breakdown of the emotions and things they did that day through a cute journaling interface. In this game you write down a journal entry, our AI analyzes the tone, and then you're awarded a special fish that represents that emotion.",
             bulletpoints: [
-                "",
+                "Architected a Flask backend with the Martian Deimos Router; implemented dynamic model orchestration using intent and length-based routing rules to minimize token usage and operational costs",
+                "Engineered a Godot-to-REST pipeline via GDScript for async JSON handling, dynamic asset loading, and state management in a mobile-first environment, ensuring high-performance backend delivery and a responsive player interface",
+                "Built a deterministic parsing system and custom prompts to convert unstructured LLM data into structured game objects and real-time UI updates",
+                "Developed a system where the AI doesn't just return a score but blends sentiment analysis, creative writing, and real fish facts into a single cohesive response"
             ],
-            skills: ["Python", "Godot", "GDScript", "Kubernetes", "Docker", "GCP Firebase"],
-        }  
+            skills: ["Python", "Flask", "Godot", "GDScript", "REST"],
+        },
+        { 
+            name: "Artemis Smartwatch (ESP-32): Workshop",
+            image: "/images/projects/artemissmartwatch.png",
+            overlayImg: "/images/projects/artemissmartwatch_overlay.png",
+            buttonOne: ["Documentation", "https://devpost.com/software/fish-for-thought"],    
+            buttonTwo: ["CircuitOS GitHub", "https://github.com/CircuitMess/micropython/tree/master"],
+            description: "Hosted an interactive hardware and software workshop at work where an (awesome!) group assembled and programmed their own smartwatches using the kits by CircuitMess. Planned the lesson and architected the missing docs for this smartwatch, ensuring everyone got hands-on experience with internal hardware components—including displays, gyroscopes, and connectivity modules—and MicroPython. Built  a few example apps and helped to run the showcase of the apps at the end.",
+            bulletpoints: [
+                "Spearheaded a technical smartwatch workshop, managing end-to-end logistics from executive and HR approval to curriculum design for cross-functional engineering teams",
+                "Reverse-engineered undocumented modules within the CircuitOS environment, performing deep-code analysis of local Python databases to extract and utilize latent functions",
+                "Facilitated hands-on coding sessions, fostering internal knowledge sharing and technical growth",
+                "Taught MicroPython fundamentals and low-level GPIO pin communication to bridge the gap between software logic and hardware execution",
+            ],
+            skills: ["MicroPython", "ESP32", "Embedded Software", "Leadership", "Team Building"],
+        } 
     ]
 };
 

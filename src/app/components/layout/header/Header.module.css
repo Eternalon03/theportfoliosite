@@ -8,6 +8,12 @@
     background: transparent;
 }
 
+/* Hide header on blog page */
+body:has([data-page="blog"]) .header,
+[data-page="blog"] .header {
+    display: none;
+}
+
 .header.scrolled {
     background: rgba(46, 170, 252, 0.3);
     backdrop-filter: blur(10px);
