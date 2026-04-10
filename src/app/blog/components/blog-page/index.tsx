@@ -324,6 +324,12 @@ const BlogPage = () => {
         </div>
       </div>
       
+      <div className={styles.backLinkContainer}>
+        <a href="/blog" className={styles.backLink}>
+          &larr; Back to Blog
+        </a>
+      </div>
+      
       <div className={styles.homeButtonContainer}>
         <a href="https://nicoleplaneta.com" className={styles.homeButton} target="_blank" rel="noopener noreferrer">
           Return to Home
