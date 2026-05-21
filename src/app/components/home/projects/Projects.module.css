@@ -176,6 +176,23 @@
     text-transform: uppercase;
 }
 
+.awardTag {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    width: fit-content;
+    color: #1a1a1a;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-family: var(--font-subheading);
+    font-size: var(--clamp-xs);
+    font-weight: var(--font-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+    display: inline-block;
+    box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+    border: 1px solid #FFD700;
+}
+
 .projectDescription {
     font-family: var(--font-paragraph);
     font-size: var(--clamp-base);

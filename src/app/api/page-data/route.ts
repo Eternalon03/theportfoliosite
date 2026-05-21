@@ -65,25 +65,26 @@ const experienceData = [
         internship: "+ September 2024 - December 2024 (Internship)",
         bulletPoints: [
             ["Core Mobile Features & Platform Architecture",
-                ["Implemented **end-to-end frontend and network architecture** for major user flow modernizations, using **Server Driven UI principles**. Engineered backwards-compatible **REST API layers** in Kotlin and Swift, handling analytics, legacy constraints, and regression edge cases.",
-                "Resolved a critical API defect utilizing **Splunk logs** to trace cross-service payload drops, **preventing major production failures prior to launch.**",
-                "Diagnosed a vendor-side library defect causing excessive CPU usage, **authoring a technical analysis paper utilized directly by the company** to patch the vulnerability globally.",
-                "Investigated and resolved a critical **iOS platform** stability issue **affecting over 10,000 active users**. Utilized New Relic analytics to trace stack crashes including method swizzling to a legacy Swift CoreData race condition, **reducing the enterprise crash rate by 0.6%**.",
+                ["Created end-to-end front-end and network architecture for 2 major user flow modernizations released to 10k+ users in Kotlin, Jetpack Compose, Retrofit, and RxJava, using feature flags for A/B testing.",
+                "Found and resolved a cross-service blocker **affecting 3% of QA users** right before release by diagnosing an **AWS CloudFront Miss**, tracing the data in Splunk to an underlying encoding flaw in Kotlin.",
+                "Engineered backwards-compatible **REST API layers** in Kotlin and Swift, handling analytics, legacy constraints, and regression edge cases.",
+                "Diagnosed a vendor-side library defect causing a **500% spike in CPU usage**, **authoring a technical analysis paper utilized directly by the company** to patch the vulnerability globally.",
+                "Investigated and resolved a critical **iOS platform** stability issue **affecting over 10,000 active users**, reducing the enterprise crash rate by 0.6%. Utilized New Relic analytics to trace stack crashes to a legacy Swift CoreData race condition.",
                 "Executed proactive technical debt reduction across the iOS and Android codebase in UIKit and Kotlin, refactoring legacy Singleton anti-patterns, and creating the enterprise migration proposal for Swift 6."
                 ]
             ],
             ["CI/CD & Developer Experience",
-                ["Led a major **enterprise initiative** to eliminate manual regression testing, supporting the shift to a weekly release cycle. **Eliminated 85+ legacy UI tests** on a strict deadline by managing the technical coordination and established the architectural criteria across 9 distinct feature teams.",
+                ["Spearheaded an enterprise movement that cut the **mobile release signoff time from 3 days to 2 hours** across 9 teams, cutting 85+ manual tests**, and engineering technical workarounds to mock live OS dependencies like Android Biometrics.",
                 "Developed and delivered a comprehensive 40+ slide technical training program for the new Weekly Release model to **35+ engineers**, detailing the new architecture and operational shifts for manual sign-offs.",
-                "Led collaboration with internal and external teams to become the first Canadian team to fully integrate an accessibility testing engine, into the existing Jenkins pipeline. Managed the related artifacts and  commands needed through various **Fastlane / Ruby scripts.**",
-                "Created an **Android crash dashboard** in New Relic to monitor and track application stability metrics, managed by feature and fragment lifecycle, **with a 100% developer adoption rate**.",
-                "Managed progressive phased rollouts to production with **feature flags**. Conducted live telemetry monitoring and weekly regression sign-offs for critical compliance and signup flows.",
+                "Led collaboration with internal and external teams to become the first Canadian team to fully integrate an accessibility testing engine, into the existing Jenkins pipeline. Managed the related artifacts and commands needed through various **Fastlane / Ruby scripts.**",
+                "Architected granular crash dashboards for 100+ features across 9 teams, bound to the Android Fragment lifecycle, mapping complex user interaction data into Splunk.",
                 "Overhauled the mobile engineering onboarding architecture, identifying and correcting critical gaps in local environment setups, Fastlane replication, and access provisioning. Quickly authored disaster-recovery documentation for Artifactory authentication failures, unblocking the whole team.",
                 ]
             ],
             ["Quality Assurance & Accessibility (a11y) Architecture",
-                ["Served as the **primary technical lead** for a pilot enterprise accessibility review framework, **resolving 15+ compliance issues on the team alone**. Authored the standardized resolution documentation and directly mentored cross-functional developers on patching complex compliance failures.",
-                    "Enhanced accessibility by implementing SwiftUI Accessibility traits, enabling full VoiceOver support and reducing all serious accessibility scan failures from 20+ to 0.",
+                ["Served as the **primary technical lead** for a pilot enterprise accessibility review framework in the team, **resolving 15+ compliance issues on the team alone**. Authored the standardized resolution documentation and presented feedback to leadership.",
+                    "Managed progressive phased rollouts to production with **feature flags**. Conducted live telemetry monitoring and weekly regression sign-offs for critical compliance and signup flows.",
+                    "Enhanced accessibility by implementing SwiftUI and Android Accessibility traits, enabling full VoiceOver/Talkback support and reducing serious accessibility scan failures from 20+ to 0.",
                     "Engineered an automated script (Python) to scrape, consolidate, and format hundreds of enterprise-wide UI/UX issues into a centralized, queryable database.",
                 ]
             ],
@@ -213,6 +214,7 @@ const projectOverview = {
                 "Developed a system where the AI doesn't just return a score but blends sentiment analysis, creative writing, and real fish facts into a single cohesive response"
             ],
             skills: ["Python", "Flask", "Godot", "GDScript", "REST"],
+            award: "Runner up for Martian API prize"
         },
         { 
             name: "Artemis Smartwatch (ESP-32): Workshop",
@@ -246,14 +248,14 @@ const certificationsData = [
         issuer: "Royal Conservatory of Music",
         date: "",
         credentialId: "",
-        image: "/images/certifications/ewk.png"
+        image: "/images/certifications/rcm.jpg"
     },
     {
         name: "Senior Black Belt",
         issuer: "East West Karate",
         date: "",
         credentialId: "",
-        image: "/images/certifications/rcm.jpg"
+        image: "/images/certifications/ewk.png"
     }
 ];
 
