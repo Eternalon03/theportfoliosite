@@ -100,7 +100,7 @@ const Skills = () => {
 
             <div className={styles.tabHeaders}>
                 {/* add ml back below will bring the string back*/}
-                {["mobile", "web", "game"].map((tab) => (
+                {["mobile", "game", "web"].map((tab) => (
                     <button
                         key={tab}
                         className={`${styles.tabButton} ${activeTab === tab ? styles.activeTab : ""}`}

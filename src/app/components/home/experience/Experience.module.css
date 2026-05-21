@@ -220,11 +220,11 @@
     font-family: var(--font-subheading);
     font-weight: 700;
     font-size: var(--clamp-lg);
-    color: var(--neon-cyan);
+    color: var(--off-white);
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 1rem;
-    text-shadow: 0 0 8px var(--neon-cyan-dim);
+    text-shadow: 0 0 7px rgba(0, 195, 255, 0.7);
     border-bottom: 1px solid rgba(0, 229, 255, 0.3);
     padding-bottom: 0.5rem;
 }
@@ -232,7 +232,7 @@
 .seeMoreBtn {
     background: transparent;
     border: 3px solid var(--neon-cyan);
-    color: var(--neon-cyan);
+    color: var(--off-white);
     font-family: var(--font-heading);
     font-size: var(--font-small);
     padding: 6px 15px;

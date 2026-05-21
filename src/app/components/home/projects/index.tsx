@@ -14,6 +14,7 @@ const Projects = () => {
             description: string;
             bulletpoints: string[];
             skills: string[];
+            award?: string;
         }>;
     } | null>(null);
 
@@ -69,6 +70,11 @@ const Projects = () => {
 
                                     <div className={styles.projectContentMain}>
                                         <h3 className={styles.projectTitle}>{project.name}</h3>
+                                        {project.award && (
+                                            <div className={styles.awardTag}>
+                                                {project.award}
+                                            </div>
+                                        )}
                                         <p className={styles.projectDescription}>
                                             {project.description}
                                         </p>
