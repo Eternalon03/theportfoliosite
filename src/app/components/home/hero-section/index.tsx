@@ -1,25 +1,13 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./HeroSection.module.css";
 import SocialLinks from "./sociallinks";
 
 const HeroSection = () => {
-    // State for the loading screen
-    const [isLoading, setIsLoading] = useState(true);
-
     // Refs for DOM elements
     const cardRef = useRef<HTMLDivElement | null>(null);
     const glowRef = useRef<HTMLDivElement | null>(null);
-
-    // Loading screen timeout
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-        }, 1500);
-
-        return () => clearTimeout(timer);
-    }, []);
 
     // 3D Card Hover Logic
     const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -46,14 +34,6 @@ const HeroSection = () => {
 
     return (
         <section className="relative w-full flex items-center justify-center py-4">
-            {/* Loading Screen */}
-            {isLoading && (
-                <div className={styles.loading} id="loading">
-                    <div className={styles["loading-text"]}>DRAFTING...</div>
-                    <div className={styles["loading-bar"]}></div>
-                </div>
-            )}
-
             {/* Cyberpunk Card Container */}
             <div
                 className={styles["card-container"]}

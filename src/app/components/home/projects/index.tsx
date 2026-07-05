@@ -18,6 +18,28 @@ const Projects = () => {
         }>;
     } | null>(null);
 
+    const [videoModal, setVideoModal] = useState<{ isOpen: boolean; videoId: string | null }>({
+        isOpen: false,
+        videoId: null
+    });
+
+    const extractYouTubeId = (url: string): string | null => {
+        const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+        const match = url.match(regex);
+        return match ? match[1] : null;
+    };
+
+    const openVideoModal = (url: string) => {
+        const videoId = extractYouTubeId(url);
+        if (videoId) {
+            setVideoModal({ isOpen: true, videoId });
+        }
+    };
+
+    const closeVideoModal = () => {
+        setVideoModal({ isOpen: false, videoId: null });
+    };
+
     useEffect(() => {
         const fetchProjects = async () => {
             try {
@@ -97,12 +119,30 @@ const Projects = () => {
                                             ))}
                                         </div>
                                         <div className={styles.projectLinks}>
-                                            <a href={project.buttonOne[1]} className={styles.projectLink} target="_blank" rel="noopener noreferrer">
-                                                {project.buttonOne[0]}
-                                            </a>
-                                            <a href={project.buttonTwo[1]} className={styles.projectLink} target="_blank" rel="noopener noreferrer">
-                                                {project.buttonTwo[0]}
-                                            </a>
+                                            {project.buttonOne[0].toLowerCase().includes('video') ? (
+                                                <button 
+                                                    onClick={() => openVideoModal(project.buttonOne[1])}
+                                                    className={styles.projectLink}
+                                                >
+                                                    {project.buttonOne[0]}
+                                                </button>
+                                            ) : (
+                                                <a href={project.buttonOne[1]} className={styles.projectLink} target="_blank" rel="noopener noreferrer">
+                                                    {project.buttonOne[0]}
+                                                </a>
+                                            )}
+                                            {project.buttonTwo[0].toLowerCase().includes('video') ? (
+                                                <button 
+                                                    onClick={() => openVideoModal(project.buttonTwo[1])}
+                                                    className={styles.projectLink}
+                                                >
+                                                    {project.buttonTwo[0]}
+                                                </button>
+                                            ) : (
+                                                <a href={project.buttonTwo[1]} className={styles.projectLink} target="_blank" rel="noopener noreferrer">
+                                                    {project.buttonTwo[0]}
+                                                </a>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -131,6 +171,23 @@ const Projects = () => {
                     </div>
                 </div>
             </div>
+
+            {videoModal.isOpen && videoModal.videoId && (
+                <div className={styles.videoModalOverlay} onClick={closeVideoModal}>
+                    <div className={styles.videoModalContent} onClick={(e) => e.stopPropagation()}>
+                        <button className={styles.videoModalClose} onClick={closeVideoModal}>×</button>
+                        <div className={styles.videoWrapper}>
+                            <iframe
+                                src={`https://www.youtube.com/embed/${videoModal.videoId}?autoplay=1`}
+                                title="YouTube video player"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            />
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
     );
 };

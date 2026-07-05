@@ -243,6 +243,7 @@
 
 .arrows-vector {
     width: calc(19vw - 50px);
+    max-width: 310px;
     aspect-ratio: 1 / 1; 
     display: inline-block;
     background-color: var(--off-white); 

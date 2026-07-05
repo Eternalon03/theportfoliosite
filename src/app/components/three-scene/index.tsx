@@ -37,7 +37,6 @@ export const useThreeScene = (
     const [isSupported, setIsSupported] = useState(true); // Track support state
     const configRef = useRef({ ...defaultConfig, ...config });
     const sceneObjectsRef = useRef<SceneObjects | null>(null);
-    const mousePositionRef = useRef<MousePosition>({ x: 0, y: 0 });
     const animationFrameRef = useRef<number | undefined>(undefined);
 
     // Initialize scene
@@ -159,14 +158,6 @@ export const useThreeScene = (
         }
         particleSystem.geometry.attributes.position.needsUpdate = true;
 
-        // Camera movement based on mouse
-        const targetX = mousePositionRef.current.x * 0.2;
-        const targetY = mousePositionRef.current.y * 0.2;
-
-        camera.position.x += (targetX - camera.position.x) * 0.05;
-        camera.position.y += (targetY - camera.position.y) * 0.05;
-        camera.lookAt(scene.position);
-
         renderer.render(scene, camera);
         animationFrameRef.current = requestAnimationFrame(animate);
     };
@@ -180,12 +171,6 @@ export const useThreeScene = (
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
-    };
-
-    // Handle mouse move
-    const handleMouseMove = (event: MouseEvent) => {
-        mousePositionRef.current.x = (event.clientX / window.innerWidth) * 2 - 1;
-        mousePositionRef.current.y = -(event.clientY / window.innerHeight) * 2 + 1;
     };
 
     // Cleanup
@@ -202,7 +187,6 @@ export const useThreeScene = (
 
         // Remove event listeners
         window.removeEventListener("resize", handleResize);
-        window.removeEventListener("mousemove", handleMouseMove);
 
         // Remove canvas from DOM
         if (containerRef.current && renderer.domElement) {
@@ -247,7 +231,6 @@ export const useThreeScene = (
         animate();
 
         window.addEventListener("resize", handleResize);
-        window.addEventListener("mousemove", handleMouseMove);
 
         // Cleanup on unmount
         return cleanup;

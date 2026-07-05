@@ -4,8 +4,8 @@
     left: 0;
     right: 0;
     z-index: 50;
-    transition: all 0.3s ease;
-    background: transparent;
+    background: rgba(31, 128, 219, 0);
+    transition: background 0.3s ease;
 }
 
 /* Hide header on blog page */
@@ -15,7 +15,7 @@ body:has([data-page="blog"]) .header,
 }
 
 .header.scrolled {
-    background: rgba(46, 170, 252, 0.3);
+    background: rgba(31, 128, 219, 0.7);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0, 240, 255, 0.15);
     box-shadow: 0 4px 20px rgba(0, 240, 255, 0.1);
@@ -81,15 +81,25 @@ body:has([data-page="blog"]) .header,
     left: 50%;
     width: 0;
     height: 2px;
-    background: var(--neon-cyan, #00f0ff);
-    box-shadow: 0 0 10px var(--neon-cyan, #00f0ff);
+    background: var(--medium-blue, #00f0ff);
+    box-shadow: 0 0 10px var(--medium-blue, #00f0ff);
     transition: all 0.3s ease;
     transform: translateX(-50%);
 }
 
 .navLink:hover {
-    color: var(--neon-cyan, #00f0ff);
-    text-shadow: 0 0 2px var(--neon-cyan, #0051ff);
+    color: var(--medium-blue);
+    text-shadow: 0 0 2px var(--medium-blue, #0051ff);
+}
+
+.header.scrolled .navLink:hover {
+    color: var(--bright-white);
+    text-shadow: 0 0 2px var(--bright-white);
+}
+
+.header.scrolled .navLink:hover::before {
+    background: var(--bright-white);
+    box-shadow: 0 0 10px var(--bright-white);
 }
 
 .navLink:hover::before {
