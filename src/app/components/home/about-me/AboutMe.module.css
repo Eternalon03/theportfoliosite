@@ -72,6 +72,9 @@
 }
 
 @media (max-width: 568px) {
+    .aboutContainer {
+        overflow: hidden;
+    }
     .aboutDescription {
         font-size: 1rem; 
     }

@@ -204,7 +204,7 @@ const projectOverview = {
             name: "“Fish For Thought”: Hack the North 2025",
             image: "/images/projects/fishforthought.png",
             overlayImg: "/images/projects/fishforthought_overlay.png",
-            buttonOne: ["Video Demo", "https://devpost.com/software/fish-for-thought"],    
+            buttonOne: ["Video Demo", "https://www.youtube.com/watch?v=_w8JkJIDEeA"],    
             buttonTwo: ["GitHub", "https://github.com/Eternalon03/Hack-The-North-2025"],
             description: "Fish for Thought aims to help users reflect and log what they did and felt throughout their day on the app. People love custom experiences so, mildly inspired by the popularity of daily horoscopes, Fish For Thought gives users a custom breakdown of the emotions and things they did that day through a cute journaling interface. In this game you write down a journal entry, our AI analyzes the tone, and then you're awarded a special fish that represents that emotion.",
             bulletpoints: [
